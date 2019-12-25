@@ -4,5 +4,7 @@
 @import "note.css";
 @import "setting.css";
 
-
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
 

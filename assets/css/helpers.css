@@ -10,6 +10,20 @@
 .justify-center{
     justify-content: center;
 }
+<<<<<<< HEAD
+.align-baseline{
+   align-items: baseline;
+}
+.justify-around{
+    justify-content: space-around;
+}
+
+.align-baseline{
+    align-items: baseline;
+}
+
+
+=======
 
 .align-flex-start{
     align-items: flex-start;
@@ -29,3 +43,4 @@
     list-style-type: none;
 }
 
+>>>>>>> eb1ac62191ccce2e74809bc88dd1d7d8014afaab

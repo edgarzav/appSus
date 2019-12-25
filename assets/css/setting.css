@@ -1,4 +1,16 @@
 img{
     width:100%;
 }
+<<<<<<< HEAD
 p { word-break: break-all }
+=======
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+ul{
+    list-style-type: none;
+}
+>>>>>>> 27b72e78c82466005e06a5799e916886522dc4cf

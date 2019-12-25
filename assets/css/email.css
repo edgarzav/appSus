@@ -23,13 +23,55 @@ h2 {
 
 .email-list {
   background-color: white;
-  margin: 0 20px;
+
+  width: 380px;
 }
 
 .email-item {
+  padding: 0 20px;
   border-bottom: 1px solid rgb(185, 185, 185);
 }
 
 .email-details {
   height: 100vh;
+  padding: 10px;
+  width: 100%;
+  background-color: #fff;
+  border-left: 1px solid rgb(185, 185, 185);
+}
+
+.sideBar{
+  width: 120px;
+  padding: 0 15px;
+}
+
+.compose-email{
+  width: 500px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border: 1px solid rgba(211, 211, 211, 0.514);
+}
+
+.compose-title{
+  font-size: 1rem;
+  background-color: grey;
+  padding: 10px 10px;
+  margin: 0;
+  color: white;
+}
+.compose-btn{
+  width: 90px;
+    height: 35px;
+    border-radius: 7px;
+    background-color: royalblue;
+    border: none;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+textarea{
+  border: none;
 }

@@ -1,6 +1,8 @@
 import EmailList from '../js/apps/email/cmps/EmailList.jsx'
 import EmailPage from '../js/apps/email/pages/EmailPage.jsx'
 import emailService from '../js/apps/email/services/emailService.js'
+import EmailSideBar from '../js/apps/email/cmps/EmailSideBar.jsx'
+import EmailCompose from '../js/apps/email/cmps/EmailCompose.jsx'
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
 const { createBrowserHistory } = History
@@ -13,9 +15,6 @@ export default class EmailApp extends React.Component {
         this.loadEmails();
     }
 
-    // loadEmail = () => {
-
-    // }
 
     loadEmails = () => {
         emailService.getEmails().then(emails => {
@@ -23,17 +22,25 @@ export default class EmailApp extends React.Component {
         })
     }
 
+    onReadToggle = (emailId) =>{
+        console.log('toggle');
+        
+        emailService.toggleReadMail(emailId).then(emails=>{
+            console.log(emails);
+            
+            this.setState({ emails })
+        })
+    }
+
 
     render() {
-        const { emails } = this.state
-        return <div className="email-app">
-            <h2>email</h2>
-        <EmailList emails={this.state.emails}/>
+        return <div className="email-app flex">
+            <EmailCompose/>
+            <EmailSideBar />
+            <EmailList  emails={this.state.emails} onReadToggle={this.onReadToggle}/>
             <Router history={history}>
                 <Switch>
                     <Route component={EmailPage} path="/email/:id" exact></Route>
-                    {/* <Route render={(props) => {/* <EmailList emails={this.state.emails} {...props} />} */}
-                        {/* path="/email" exact></Route> */} */}
                 </Switch>
             </Router>
         </div>
@@ -41,5 +48,4 @@ export default class EmailApp extends React.Component {
 
 }
 
-{/* <Route render={(props) => <CarAdd {...props} toggleModal={this.toggleModal} /> */ }
 

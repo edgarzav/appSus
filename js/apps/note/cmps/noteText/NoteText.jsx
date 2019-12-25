@@ -5,8 +5,8 @@ export default class NoteText extends React.Component {
     }
     render() {
       
-        return   <li  >
-            {this.props.note.type}
+        return   <li className="note-container clean-list" >
+           <div className="innerNote">{this.props.note.info.txt}</div> 
         </li>
     }
 }

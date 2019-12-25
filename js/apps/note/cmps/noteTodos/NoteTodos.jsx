@@ -6,8 +6,8 @@ export default class NoteTodos extends React.Component {
    
     render() {
       
-        return   <li  >
-           {this.props.note.type}
+        return   <li className="note-container clean-list"  >
+          <div className="innerNote">{this.props.note.type}</div> 
         </li>
     }
 }

@@ -2,13 +2,13 @@
 export default class NoteImg extends React.Component {
     
     componentDidMount() {
-
+        
     }
    
     render() {
       
-        return   <li  >
-            {this.props.note.type}
+        return   <li className="note-container clean-list"   >
+          <div className="innerNote"><img src={this.props.note.info.url} alt=""/></div>  
         </li>
     }
 }

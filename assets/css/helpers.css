@@ -5,3 +5,15 @@
 .justify-center{
     justify-content: center;
 }
+.align-baseline{
+   align-items: baseline;
+}
+.justify-around{
+    justify-content: space-around;
+}
+
+.align-baseline{
+    align-items: baseline;
+}
+
+

@@ -1,4 +1,35 @@
+.em-preview-subject {
+  text-align: center;
+  width: 170px;
+  font-size: 1.1rem;
+}
 
-.unBold{
-    font-weight: 400;
-  }
+h2 {
+  font-weight: unset;
+}
+
+.unBold {
+  font-weight: 100;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.email-app {
+  background-color: rgb(221, 221, 221);
+  height: 100vh;
+}
+
+.email-list {
+  background-color: white;
+  margin: 0 20px;
+}
+
+.email-item {
+  border-bottom: 1px solid rgb(185, 185, 185);
+}
+
+.email-details {
+  height: 100vh;
+}

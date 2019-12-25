@@ -2,5 +2,7 @@
 @import "helpers.css";
 @import "email.css";
 
-
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
 

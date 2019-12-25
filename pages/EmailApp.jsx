@@ -1,9 +1,9 @@
 import EmailList from '../js/apps/email/cmps/EmailList.jsx'
-import EmailPage from '../js/apps/email/pages/EmailPage.jsx'
-import emailService from '../js/apps/email/services/emailService.js'
+import emailService from './js/apps/email/services/emailService.js'
 import EmailSideBar from '../js/apps/email/cmps/EmailSideBar.jsx'
 import EmailCompose from '../js/apps/email/cmps/EmailCompose.jsx'
 import eventBusService from "../services/eventBusService.jsx"
+import EmailDetails from '../js/apps/email/pages/EmailDetails.jsx'
 
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
@@ -17,45 +17,37 @@ export default class EmailApp extends React.Component {
         this.loadEmails();
     }
 
-
     loadEmails = () => {
         emailService.getEmails().then(emails => {
             this.setState({ emails })
         })
     }
 
-    onReadToggle = (emailId) =>{        
-        emailService.toggleReadMail(emailId).then(emails=>{            
+    onReadToggle = (emailId) => {
+        emailService.toggleReadMail(emailId).then(emails => {
             this.setState({ emails })
         })
     }
 
     onSendEmail = (email) => {
-console.log('onsend');
-
-emailService.addEmail(email).then(emails => {
-            this.setState({emails})
-            // this.props.history.push("/email/")
+        emailService.addEmail(email).then(emails => {
+            this.setState({ emails })
         })
     }
 
     onCompose = () => {
-        
-        // booksService.addGoogleBook(book).then(book => {
-            eventBusService.emit('toggleModal');
-            // this.props.history.push("/books")
-        // })
+        eventBusService.emit('toggleModal');
     }
 
 
     render() {
         return <div className="email-app flex">
-            <EmailCompose onSendEmail={this.onSendEmail}/>
+            <EmailCompose onSendEmail={this.onSendEmail} />
             <EmailSideBar onCompose={this.onCompose} />
-            <EmailList  emails={this.state.emails} onReadToggle={this.onReadToggle}/>
+            <EmailList emails={this.state.emails} onReadToggle={this.onReadToggle} />
             <Router history={history}>
                 <Switch>
-                    <Route component={EmailPage} path="/email/:id" exact></Route>
+                    <Route component={EmailDetails} path="/email/:id" exact></Route>
                 </Switch>
             </Router>
         </div>

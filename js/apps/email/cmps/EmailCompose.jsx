@@ -21,9 +21,7 @@ export default class EmailCompose extends React.Component {
     }
 
 
-    onSaveEmail = () => {
-        console.log('onSave');
-        
+    onSaveEmail = () => {        
         const { to, cc, subject, body } = this.state
         this.props.onSendEmail({ to, cc, subject, body })
     }

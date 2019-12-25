@@ -3,6 +3,36 @@ import Email from "./Email.js"
 export default { getEmails, getEmailById, toggleReadMail, addEmail }
 let gIdx = 5;
 
+
+
+let gEmails = [{
+    id: 1,
+    subject: 'Wassap1?',
+    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+    isRead: false,
+    sentAt: 1551133930594
+}, {
+    id: 2,
+    subject: 'Wassap2?',
+    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
+    isRead: true,
+    sentAt: 1551133930594
+}, {
+    id: 3,
+    subject: 'Wassap3?',
+    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
+    isRead: true,
+    sentAt: 1551133930594
+}, {
+    id: 4,
+    subject: 'Wassap4?',
+    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
+    isRead: false,
+    sentAt: 1551133930594
+}
+
+]
+
 function getEmails() {
     return Promise.resolve([...gEmails])//change to copy
 }
@@ -33,33 +63,5 @@ function addEmail(email) {
     return Promise.resolve(gEmails)
 }
 
-
-let gEmails = [{
-    id: 1,
-    subject: 'Wassap1?',
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-    isRead: false,
-    sentAt: 1551133930594
-}, {
-    id: 2,
-    subject: 'Wassap2?',
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
-    isRead: true,
-    sentAt: 1551133930594
-}, {
-    id: 3,
-    subject: 'Wassap3?',
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
-    isRead: true,
-    sentAt: 1551133930594
-}, {
-    id: 4,
-    subject: 'Wassap4?',
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
-    isRead: false,
-    sentAt: 1551133930594
-}
-
-]
 
 // gEmails.push(new Email('cwe', 'wrvr', 'rwvw', 'bvwhjkrbij'))

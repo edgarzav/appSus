@@ -4,7 +4,7 @@ export default { getEmails, getEmailById, toggleReadMail, addEmail }
 let gIdx = 5;
 
 function getEmails() {
-    return Promise.resolve(gEmails)//change to copy
+    return Promise.resolve([...gEmails])//change to copy
 }
 
 

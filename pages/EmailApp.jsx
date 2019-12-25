@@ -2,7 +2,7 @@ import EmailList from '../js/apps/email/cmps/EmailList.jsx'
 import emailService from '../js/apps/email/services/emailService.js'
 import EmailSideBar from '../js/apps/email/cmps/EmailSideBar.jsx'
 import EmailCompose from '../js/apps/email/cmps/EmailCompose.jsx'
-import eventBusService from '../services/eventBusService.jsx'
+import eventBusService from '../services/eventBusService.js'
 import EmailDetails from '../js/apps/email/pages/EmailDetails.jsx'
 
 const Router = ReactRouterDOM.HashRouter

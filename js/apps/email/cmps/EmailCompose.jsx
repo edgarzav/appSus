@@ -1,4 +1,4 @@
-import eventBusService from "../../../../services/eventBusService.js";
+import eventBusService from '../../../../services/eventBusService.js'
 export default class EmailCompose extends React.Component {
     eventKiller = null;
     state = { display: false, to: '', cc: '', subject: '', body: '' }

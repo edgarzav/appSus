@@ -1,3 +1,4 @@
+import NoteTools from '../NoteTools.jsx'
 export default class NoteText extends React.Component {
     
     componentDidMount() {
@@ -6,7 +7,10 @@ export default class NoteText extends React.Component {
     render() {
       
         return   <li className="note-container clean-list" >
-           <div className="innerNote">{this.props.note.info.txt}</div> 
+           <div className="innerNote "><p className="flex wrap">{this.props.note.info.txt}</p>
+           <NoteTools/>
+           </div>
+            
         </li>
     }
 }

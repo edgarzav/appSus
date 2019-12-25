@@ -12,7 +12,6 @@ export default class NoteApp extends React.Component {
             then(notes => this.setState({ notes }))
     }
     onHandleChange=(txtInput,noteType)=>{
-        // console.log(txtInput,noteType)
         noteService.createNote(txtInput,noteType).then(notes=>this.loadNotes())
     }
 

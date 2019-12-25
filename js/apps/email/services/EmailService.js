@@ -5,9 +5,14 @@ export default { getEmails, getEmailById, toggleReadMail, addEmail }
 let gEmails;
 
 
-function getEmails() {
-    return Promise.resolve(gEmails)//change to copy
+function getEmails(searchBy) {
+    const emails = (!searchBy) ? [...gEmails] :
+        gEmails.filter(email => email.subject.toLowerCase().includes(searchBy))
+
+    return Promise.resolve(emails)
 }
+
+
 
 
 
@@ -36,7 +41,7 @@ function addEmail(email) {
 }
 
 
- gEmails = [{
+gEmails = [{
     id: 1,
     subject: 'Wassap1?',
     body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
@@ -44,13 +49,13 @@ function addEmail(email) {
     sentAt: 1551133930594
 }, {
     id: 2,
-    subject: 'Wassap2?',
+    subject: 'koko',
     body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
     isRead: true,
     sentAt: 1551133930594
 }, {
     id: 3,
-    subject: 'Wassap3?',
+    subject: 'hello',
     body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
     isRead: true,
     sentAt: 1551133930594

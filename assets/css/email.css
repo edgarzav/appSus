@@ -75,3 +75,7 @@ h2 {
 textarea {
   border: none;
 }
+
+.filter-select{
+  height: 25px;
+}

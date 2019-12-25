@@ -16,7 +16,7 @@
     align-items: baseline;
 }
 
-.diraction-column{
+.diraction-column {
     flex-direction: column;
 }
 
@@ -42,6 +42,10 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
+<<<<<<< HEAD
 }
 
 
+=======
+}
+>>>>>>> a542f56368f3a4dafc2a1d4392d4fa8b290cc740

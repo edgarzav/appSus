@@ -11,9 +11,3 @@ export default class Email {
 
     }
 }
-
-// id: '1',
-//     subject: 'Wassap1?',
-//     body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-//     isRead: false,
-//     sentAt: 1551133930594

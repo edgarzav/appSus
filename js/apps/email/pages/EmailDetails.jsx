@@ -1,18 +1,16 @@
-import EmailDetails from '../cmps/EmailDetails.jsx';
 import emailService from '../services/emailService.js'
 
-export default class EmailPage extends React.Component {
+export default class EmailDetails extends React.Component {
     state = { email: null }
 
 
     componentDidMount() {
         this.loadEmail();
-
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.id
-            !== this.props.match.params.id) {
+            != this.props.match.params.id) {
             this.loadEmail();
         }
     }
@@ -34,8 +32,5 @@ export default class EmailPage extends React.Component {
                 <p>{sentAt}</p>
             </div>
         } else return 'No Emails'
-
-
-        // return email ? <EmailDetails email={email} onReadToggle={this.onReadToggle} /> : 'No Email'
     }
 }

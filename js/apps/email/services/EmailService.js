@@ -30,7 +30,7 @@ function addEmail(email) {
     const newEmail = new Email(to, cc, subject, body)
 
     gEmails = [{ ...newEmail }, ...gEmails]
-    return Promise.resolve(gEmails)
+    return Promise.resolve(1)
 }
 
 

@@ -1,6 +1,6 @@
 import Home from './pages/Home.jsx'
-import EmailApp from './js/apps/email/pages/EmailApp.jsx'
-import NoteApp from './js/apps/note/pages/NoteApp.jsx'
+import EmailApp from './pages/EmailApp.jsx'
+import NoteApp from './pages/NoteApp.jsx'
 import NavBar from './js/apps/cmps/NavBar.jsx'
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM

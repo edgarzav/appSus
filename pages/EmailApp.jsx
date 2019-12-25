@@ -14,7 +14,7 @@ export default class EmailApp extends React.Component {
     state = { emails: [] }
 
     componentDidMount() {
-        // this.loadEmails();
+        this.loadEmails();
     }
 
     loadEmails = () => {

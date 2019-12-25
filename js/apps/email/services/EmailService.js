@@ -1,8 +1,10 @@
 import Email from "./Email.js"
 
 export default { getEmails, getEmailById, toggleReadMail, addEmail }
-let gIdx = 5;//temp
+
 let gEmails;
+
+
 function getEmails() {
     return Promise.resolve(gEmails)//change to copy
 }

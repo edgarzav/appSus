@@ -1,4 +1,44 @@
-export default { getEmails, getEmailById, toggleReadMail }
+import Email from "./Email.js"
+
+export default { getEmails, getEmailById, toggleReadMail, addEmail }
+
+
+function getEmails() {
+    return Promise.resolve(gEmails)//change to copy
+}
+
+
+
+function getEmailById(emailId) {
+    const email = gEmails.find(email => email.id === emailId)
+
+    return Promise.resolve(email)
+}
+
+function toggleReadMail(emailId) {
+    gEmails = gEmails.map(email => {
+        if (email.id === emailId) {
+            email.isRead = !email.isRead
+        }
+        return email
+    })
+    return Promise.resolve(gEmails)
+}
+
+function addEmail(email) {
+    const { to, cc, subject, body } = email
+    const newEmail = new Email(to, cc, subject, body)
+console.log('=');
+console.log(email);
+
+    gEmails = [newEmail, ...gEmails]
+
+    return Promise.resolve(gEmails)
+}
+
+
+
+
 let gEmails = [{
     id: '1',
     subject: 'Wassap1?',
@@ -26,25 +66,3 @@ let gEmails = [{
 }
 
 ]
-
-function getEmails() {
-    return Promise.resolve(gEmails)//change to copy
-}
-
-
-
-function getEmailById(emailId) {
-    const email = gEmails.find(email => email.id === emailId)
-
-    return Promise.resolve(email)
-}
-
-function toggleReadMail(emailId) {
-    gEmails = gEmails.map(email => {
-        if (email.id === emailId) {
-            email.isRead = !email.isRead
-        }
-        return email
-    })
-    return Promise.resolve(gEmails)
-}

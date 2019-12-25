@@ -1,10 +1,5 @@
 export default class EmailDetails extends React.Component {
 
-    // onReadToggle = () => {
-    //     this.props.onReadToggle()
-    // }
-
-
     render() {
         const { subject, body, sentAt } = this.props.email
 

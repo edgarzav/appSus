@@ -1,8 +1,8 @@
-export default { getEmails,getEmailById }
+export default { getEmails, getEmailById, toggleReadMail }
 let gEmails = [{
-    id: '2',
+    id: '1',
     subject: 'Wassap1?',
-    body: 'Pick up!',
+    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
     isRead: false,
     sentAt: 1551133930594
 }, {
@@ -37,4 +37,14 @@ function getEmailById(emailId) {
     const email = gEmails.find(email => email.id === emailId)
 
     return Promise.resolve(email)
+}
+
+function toggleReadMail(emailId) {
+    gEmails = gEmails.map(email => {
+        if (email.id === emailId) {
+            email.isRead = !email.isRead
+        }
+        return email
+    })
+    return Promise.resolve(gEmails)
 }

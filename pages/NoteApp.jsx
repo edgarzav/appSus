@@ -5,18 +5,21 @@ export default class NoteApp extends React.Component {
     state = { notes: [] }
 
     componentDidMount() {
-        this.loadNote();
+        this.loadNotes();
     }
-    loadNote = () => {
+    loadNotes = () => {
         noteService.getNotes().
             then(notes => this.setState({ notes }))
     }
-
+    onHandleChange=(txtInput,noteType)=>{
+        // console.log(txtInput,noteType)
+        noteService.createNote(txtInput,noteType).then(notes=>this.loadNotes())
+    }
 
     render() {
         return (
             <section >
-                <NoteAdd />
+                <NoteAdd handleChange={this.onHandleChange}/>
                 <NoteList notes={this.state.notes} />
             </section>
         )

@@ -1,7 +1,7 @@
 export default class NoteText extends React.Component {
     
     componentDidMount() {
-        console.log(this.props.note.type)
+       
     }
     render() {
       

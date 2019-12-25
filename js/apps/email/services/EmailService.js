@@ -4,7 +4,7 @@ export default { getEmails, getEmailById, toggleReadMail, addEmail }
 let gIdx = 5;
 let gEmails;
 function getEmails() {
-    return Promise.resolve(gEmails)//change to copy
+    return Promise.resolve(1)//change to copy
 }
 
 
@@ -30,11 +30,11 @@ function addEmail(email) {
     const newEmail = new Email(to, cc, subject, body)
 
     gEmails = [{ ...newEmail }, ...gEmails]
-    return Promise.resolve(1)
+    return Promise.resolve(gEmails)
 }
 
 
-gEmails = [{
+ gEmails = [{
     id: 1,
     subject: 'Wassap1?',
     body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',

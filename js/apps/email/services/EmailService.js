@@ -1,7 +1,7 @@
 import Email from "./Email.js"
 
 export default { getEmails, getEmailById, toggleReadMail, addEmail }
-
+let gIdx = 5;
 
 function getEmails() {
     return Promise.resolve(gEmails)//change to copy
@@ -10,14 +10,14 @@ function getEmails() {
 
 
 function getEmailById(emailId) {
-    const email = gEmails.find(email => email.id === emailId)
+    const email = gEmails.find(email => email.id == emailId)
 
     return Promise.resolve(email)
 }
 
 function toggleReadMail(emailId) {
     gEmails = gEmails.map(email => {
-        if (email.id === emailId) {
+        if (email.id == emailId) {
             email.isRead = !email.isRead
         }
         return email
@@ -28,37 +28,32 @@ function toggleReadMail(emailId) {
 function addEmail(email) {
     const { to, cc, subject, body } = email
     const newEmail = new Email(to, cc, subject, body)
-console.log('=');
-console.log(email);
 
-    gEmails = [newEmail, ...gEmails]
-
+    gEmails = [{ ...newEmail }, ...gEmails]
     return Promise.resolve(gEmails)
 }
 
 
-
-
 let gEmails = [{
-    id: '1',
+    id: 1,
     subject: 'Wassap1?',
     body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
     isRead: false,
     sentAt: 1551133930594
 }, {
-    id: '2',
+    id: 2,
     subject: 'Wassap2?',
     body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
     isRead: true,
     sentAt: 1551133930594
 }, {
-    id: '3',
+    id: 3,
     subject: 'Wassap3?',
     body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
     isRead: true,
     sentAt: 1551133930594
 }, {
-    id: '4',
+    id: 4,
     subject: 'Wassap4?',
     body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
     isRead: false,
@@ -66,3 +61,5 @@ let gEmails = [{
 }
 
 ]
+
+// gEmails.push(new Email('cwe', 'wrvr', 'rwvw', 'bvwhjkrbij'))

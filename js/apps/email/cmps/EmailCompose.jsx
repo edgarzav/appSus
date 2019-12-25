@@ -1,12 +1,9 @@
 import eventBusService from "../../../../services/eventBusService.js";
-import booksService from "../services/emailService.js"
 export default class EmailCompose extends React.Component {
     eventKiller = null;
     state = { display: false, to: '', cc: '', subject: '', body: '' }
 
     componentDidMount() {
-        console.log(this.state.email);
-
         this.eventKiller = eventBusService.on('toggleModal', (em) => {
             this.setState(prevState => ({ display: !prevState.display, em }))
         })
@@ -21,26 +18,19 @@ export default class EmailCompose extends React.Component {
     inputChange = (ev) => {
         let fieldName = ev.target.name
         this.setState({ [fieldName]: ev.target.value })
-        console.log(this.state);
-
     }
 
 
-
-    onSendEmail = () => {
-        // addEmail()
-        const { to, cc, subject, body } = this.state
-        console.log('=');
-        console.log(this.state);
+    onSaveEmail = () => {
+        console.log('onSave');
         
-        booksService.addEmail(to, cc, subject, body).then(emails => {
-            console.log(emails);
-        })
+        const { to, cc, subject, body } = this.state
+        this.props.onSendEmail({ to, cc, subject, body })
     }
+
 
     render() {
         const { to, cc, subject, body } = this.state
-        console.log(this.state);
 
         if (!this.state.display) return null;
         return <div className="compose-email">
@@ -51,7 +41,7 @@ export default class EmailCompose extends React.Component {
                 <input type="text" value={subject} placeholder="subject" name="subject" onChange={this.inputChange} />
                 <textarea name="" value={body} id="" cols="30" rows="10" name="body" onChange={this.inputChange}></textarea>
             </form>
-            <button className="compose-btn" onClick={this.onSendEmail}>Send</button>
+            <button className="compose-btn" onClick={this.onSaveEmail}>Send</button>
         </div>
     }
 }

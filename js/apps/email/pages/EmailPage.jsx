@@ -11,8 +11,12 @@ export default class EmailPage extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
+        console.log('up');
+        
         if (prevProps.match.params.id
-            !== this.props.match.params.id) {
+            != this.props.match.params.id) {
+                console.log('diff');
+                
             this.loadEmail();
         }
     }
@@ -21,11 +25,17 @@ export default class EmailPage extends React.Component {
         const { id } = this.props.match.params;
 
         emailService.getEmailById(id).then(email => {
+            console.log(email);
+            
             this.setState({ email })
         })
     }
 
     render() {
+        console.log('render');
+        
+        console.log(this.state.email);
+        
         if (this.state.email) {
             const { subject, body, sentAt } = this.state.email
             return <div className="email-details">

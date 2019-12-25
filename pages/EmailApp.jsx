@@ -3,6 +3,8 @@ import EmailPage from '../js/apps/email/pages/EmailPage.jsx'
 import emailService from '../js/apps/email/services/emailService.js'
 import EmailSideBar from '../js/apps/email/cmps/EmailSideBar.jsx'
 import EmailCompose from '../js/apps/email/cmps/EmailCompose.jsx'
+import eventBusService from "../services/eventBusService.jsx"
+
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
 const { createBrowserHistory } = History
@@ -22,21 +24,34 @@ export default class EmailApp extends React.Component {
         })
     }
 
-    onReadToggle = (emailId) =>{
-        console.log('toggle');
-        
-        emailService.toggleReadMail(emailId).then(emails=>{
-            console.log(emails);
-            
+    onReadToggle = (emailId) =>{        
+        emailService.toggleReadMail(emailId).then(emails=>{            
             this.setState({ emails })
         })
+    }
+
+    onSendEmail = (email) => {
+console.log('onsend');
+
+emailService.addEmail(email).then(emails => {
+            this.setState({emails})
+            // this.props.history.push("/email/")
+        })
+    }
+
+    onCompose = () => {
+        
+        // booksService.addGoogleBook(book).then(book => {
+            eventBusService.emit('toggleModal');
+            // this.props.history.push("/books")
+        // })
     }
 
 
     render() {
         return <div className="email-app flex">
-            <EmailCompose/>
-            <EmailSideBar />
+            <EmailCompose onSendEmail={this.onSendEmail}/>
+            <EmailSideBar onCompose={this.onCompose} />
             <EmailList  emails={this.state.emails} onReadToggle={this.onReadToggle}/>
             <Router history={history}>
                 <Switch>

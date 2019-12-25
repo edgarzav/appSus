@@ -8,9 +8,9 @@ export default class EmailDetails extends React.Component {
         this.loadEmail();
     }
 
-    componentDidUpdate(prevProps) {        
+    componentDidUpdate(prevProps) {
         if (prevProps.match.params.id
-            != this.props.match.params.id) {                
+            != this.props.match.params.id) {
             this.loadEmail();
         }
     }
@@ -18,7 +18,7 @@ export default class EmailDetails extends React.Component {
     loadEmail() {
         const { id } = this.props.match.params;
 
-        emailService.getEmailById(id).then(email => {            
+        emailService.getEmailById(id).then(email => {
             this.setState({ email })
         })
     }

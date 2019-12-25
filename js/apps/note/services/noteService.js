@@ -66,5 +66,11 @@ const createNote=(txtInput,noteType)=>{
    return Promise.resolve([...gNotes])
 }
 
+function getNoteById(noteId) {
+    const note = gNotes.find(note => note.id === noteId)
+    
+    return Promise.resolve({...note})
+}
 
-export default {getNotes,createNote}
+
+export default {getNotes,createNote,getNoteById}

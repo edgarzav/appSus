@@ -1,4 +1,4 @@
-
+import NoteTools from '../NoteTools.jsx'
 export default class NoteImg extends React.Component {
     
     componentDidMount() {
@@ -7,8 +7,8 @@ export default class NoteImg extends React.Component {
    
     render() {
       
-        return   <li className="note-container clean-list"   >
-          <div className="innerNote"><img src={this.props.note.info.url} alt=""/></div>  
-        </li>
+        return  <div className="innerNote"><img src={this.props.note.info.url} alt=""/>
+          {/* <NoteTools note={this.props.note}/> */}
+          </div>  
     }
 }

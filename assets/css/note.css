@@ -7,6 +7,7 @@
 }
 
 .note-container {
+    position: relative;
     width: 240px;
     padding: 8px;
     float: left;
@@ -19,7 +20,7 @@
 .innerNote {
     max-width: 240px;
     padding: 10px 10px 35px 10px;
-    position: relative;
+
     background-color: #fff;
     min-height: 4em;
     border-radius: 2px;
@@ -55,7 +56,11 @@
 
 .note-tools-container {
     position: absolute;
-    bottom: 0;
+    bottom: 5px;
+    left:15px;
+}
+.note-details-tools-container{
+    display:block
 }
 
 #tools-pinned {
@@ -73,4 +78,18 @@
 
 .tools-btn:not(:first-child) {
     margin-left: 10px;
+}
+
+
+.details-container{
+    position:fixed;
+    margin:0 auto;
+    left:25%;
+    top:40%;
+    display:flex;
+    min-height:130px;
+    width:600px;
+    z-index: 10;
+    background-color: #fff;
+    border:1px solid black;
 }

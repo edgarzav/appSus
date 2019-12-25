@@ -11,10 +11,6 @@
 .justify-center {
     justify-content: center;
 }
-<<<<<<< HEAD
-.align-baseline{
-   align-items: baseline;
-=======
 
 .align-baseline {
     align-items: baseline;
@@ -22,7 +18,6 @@
 
 .diraction-column{
     flex-direction: column;
->>>>>>> 27b72e78c82466005e06a5799e916886522dc4cf
 }
 
 .justify-around {
@@ -33,11 +28,7 @@
     align-items: baseline;
 }
 
-<<<<<<< HEAD
-.align-flex-start{
-=======
 .align-flex-start {
->>>>>>> 27b72e78c82466005e06a5799e916886522dc4cf
     align-items: flex-start;
 }
 
@@ -53,7 +44,4 @@
     list-style-type: none;
 }
 
-<<<<<<< HEAD
-=======
->>>>>>>eb1ac62191ccce2e74809bc88dd1d7d8014afaab
->>>>>>> 27b72e78c82466005e06a5799e916886522dc4cf
+

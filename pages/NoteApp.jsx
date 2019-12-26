@@ -12,6 +12,7 @@ export default class NoteApp extends React.Component {
     componentDidMount() {
         this.loadNotes();
     }
+
     loadNotes = () => {
         noteService.getNotes().
             then(notes => this.setState({ notes }))
@@ -19,18 +20,48 @@ export default class NoteApp extends React.Component {
     onHandleChange = (txtInput, noteType) => {
         noteService.createNote(txtInput, noteType).then(notes => this.loadNotes())
     }
+    onDelete = (noteId) => {
+        noteService.deleteNote(noteId).then(notes => {
+            this.setState({ notes })
+            this.props.history.push('/note')
+        })
+    }
+    onPinned = (noteId) => {
+        noteService.pinNote(noteId)
+            .then(notes => {
+                this.setState({ notes })
+                this.props.history.push('/note')
+            })
+    }
 
     render() {
         return (
-            <section >
+            <div >
                 <NoteAdd handleChange={this.onHandleChange} />
-                <NoteList notes={this.state.notes} />
+                <label >
+                    Pinned:
+                    <NoteList notes={this.state.notes}
+                        onDelete={this.onDelete}
+                        onPinned={this.onPinned}
+                        isPinned={true} />
+                </label>
+
+                <NoteList notes={this.state.notes}
+                    onDelete={this.onDelete}
+                    onPinned={this.onPinned}
+                    isPinned={false} />
                 <Router history={history}>
                     <Switch>
-                        <Route component={NoteDetails} path="/note/:id" exact></Route>
+                        <Route path="/note/:id" exact
+                            render={(props) => {
+                                return (
+                                    <NoteDetails  {...props} onDelete={this.onDelete}
+                                        onPinned={this.onPinned} />
+                                )
+                            }} />
                     </Switch>
                 </Router>
-            </section>
+            </div>
         )
     }
 }

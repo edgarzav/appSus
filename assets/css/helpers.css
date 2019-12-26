@@ -31,6 +31,12 @@
 .align-flex-start {
     align-items: flex-start;
 }
+.align-flex-end{
+    align-items: flex-end;
+}
+.align-center{
+    align-items: center;
+}
 
 .flex-grow {
     flex-grow: 1;
@@ -42,10 +48,7 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
-<<<<<<< HEAD
 }
 
 
-=======
-}
->>>>>>> a542f56368f3a4dafc2a1d4392d4fa8b290cc740
+

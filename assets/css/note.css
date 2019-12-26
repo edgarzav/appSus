@@ -1,9 +1,14 @@
+@font-face {
+    font-family: fontAwsome;
+    src: url(../fonts/font-awsome/FA-Brands-Regular-400.otf);
+}
+
 .note-list-container {
     margin: 0 auto;
     column-count: 5;
-    column-gap: 15px;
-    column-width: 200px;
-    padding:10px;
+    column-gap: 20px;
+    column-width: 240px;
+    padding: 10px;
 }
 
 .note-container {
@@ -20,7 +25,6 @@
 .innerNote {
     max-width: 240px;
     padding: 10px 10px 35px 10px;
-
     background-color: #fff;
     min-height: 4em;
     border-radius: 2px;
@@ -56,40 +60,54 @@
 
 .note-tools-container {
     position: absolute;
-    bottom: 5px;
-    left:15px;
-}
-.note-details-tools-container{
-    display:block
+    bottom: 10px;
+    left: 15px;
 }
 
-#tools-pinned {
-    display: none;
+.note-details-tools-container {
+    /* display: block */
 }
 
-#tools-delete {
-    display: none;
-}
-
-.tools-btn {
-    width: 13px;
+.note-tools >* {
+    margin-left:15px;
+    font-size: 1rem;
     cursor: pointer;
 }
 
-.tools-btn:not(:first-child) {
-    margin-left: 10px;
+
+.font-awsome-pinned{
+    margin-top:2px;
+}
+.font-awsome-color{
+    margin-top:1px;
+    position: relative;
 }
 
+.color-plate{
+    right: -278%;
+    position: absolute;
+    width:100px;
+    height: 40px;
+    border:1px solid red;
+    z-index: 3;
+}
 
-.details-container{
-    position:fixed;
-    margin:0 auto;
-    left:25%;
-    top:40%;
-    display:flex;
-    min-height:130px;
-    width:600px;
+.details-container {
+    position: fixed;
+    margin: 0 auto;
+    left: 25%;
+    top: 40%;
+    display: flex;
+    min-height: 130px;
+    width: 600px;
     z-index: 10;
     background-color: #fff;
-    border:1px solid black;
+    border: 1px solid black;
 }
+
+.close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+

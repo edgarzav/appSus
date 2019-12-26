@@ -1,18 +1,17 @@
 import utils from '../../../../services/utils.js'
 const gNotes = [
     {
-        id:1,
+        id:'1',
         type: "NoteText",
         isPinned: true,
         info: {
             txt: "Fullstack Me Baby!"
         }
     },
-
-   
     {
-        id:4,
+        id:'2',
         type: "NoteTodos",
+        isPinned: false,
         info: {
             label: "How was it:",
             todos: [
@@ -22,8 +21,9 @@ const gNotes = [
         }
     },
     {
-        id:2,
+        id:'3',
         type: "NoteTodos",
+        isPinned: false,
         info: {
             label: "How was it:",
             todos: [
@@ -33,8 +33,9 @@ const gNotes = [
         }
     },
     {
-        id:3,
+        id:'4',
         type: "NoteTodos",
+        isPinned: false,
         info: {
             label: "How was it:",
             todos: [
@@ -43,6 +44,18 @@ const gNotes = [
             ]
         }
     },
+    {
+        id:'5',
+        type: "NoteImg",
+        isPinned: false,
+        info: {
+        url: "https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg",
+        title: "Me playing Mi"
+        },
+        style: {
+        backgroundColor: "#00d"
+        }
+        }
     
     
 ];
@@ -61,16 +74,33 @@ const createNote=(txtInput,noteType)=>{
     const type=noteType
     const id =utils.getRandomId()
     const info= createInfoByType(noteType,txtInput)
-    const note ={id,type,info}
-    gNotes.push(note)
+    const isPinned=false
+    const note ={id,type,info,isPinned}
+    gNotes.unshift(note)
    return Promise.resolve([...gNotes])
 }
 
-function getNoteById(noteId) {
+const getNoteById=(noteId)=> {
     const note = gNotes.find(note => note.id === noteId)
-    
     return Promise.resolve({...note})
 }
 
+const updateNote=(noteId,info)=>{
+    const note = gNotes.find(note => note.id === noteId)
+    note.info=info
+    return Promise.resolve(true)
+}
 
-export default {getNotes,createNote,getNoteById}
+const deleteNote=(noteId)=>{
+    const index= gNotes.findIndex(note=>note.id===noteId)
+    gNotes.splice(index,1)
+    return Promise.resolve([...gNotes])
+}
+
+const pinNote=(noteId)=>{
+    const index= gNotes.findIndex(note=>note.id===noteId)
+    gNotes[index].isPinned=!gNotes[index].isPinned
+    return Promise.resolve([...gNotes])
+}
+
+export default {getNotes,createNote,getNoteById,updateNote,deleteNote,pinNote}

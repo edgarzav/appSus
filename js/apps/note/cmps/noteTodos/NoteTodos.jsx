@@ -1,3 +1,4 @@
+import NoteTools from '../NoteTools.jsx'
 export default class NoteTodos extends React.Component {
     
     componentDidMount() {
@@ -6,8 +7,9 @@ export default class NoteTodos extends React.Component {
    
     render() {
       
-        return   <li className="note-container clean-list"  >
-          <div className="innerNote">{this.props.note.type}</div> 
-        </li>
+        return  <div className="innerNote">{this.props.note.type}
+
+          </div> 
+
     }
 }

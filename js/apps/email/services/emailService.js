@@ -1,6 +1,12 @@
 import Email from "./Email.js"
 
-export default { getEmails, getEmailById, toggleReadMail, addEmail }
+export default {
+    getEmails,
+    getEmailById,
+    toggleReadMail,
+    addEmail,
+    deleteEmail,
+}
 
 let gEmails;
 
@@ -14,18 +20,6 @@ function getEmails(filterBy) {
         })
     return Promise.resolve(emails)
 }
-
-
-function getBooks(filterBy) {
-    const books = (!filterBy) ? [...gBooks]
-        : gBooks.filter(book => book.title.includes(filterBy.title)
-            && book.listPrice.amount < filterBy.price);
-
-    return Promise.resolve(books)
-}
-
-
-
 
 
 function getEmailById(emailId) {
@@ -52,27 +46,38 @@ function addEmail(email) {
     return Promise.resolve(gEmails)
 }
 
+function deleteEmail(emailId) {
+    gEmails = gEmails.filter(email => email.id !== emailId)
+
+    return Promise.resolve(gEmails)
+}
+
 
 gEmails = [{
     id: 1,
-    subject: 'Wassap1?',
+    to: 'momomo@gmail.com',
+    subject: 'Wassap1 rwnk wrvw wvwevwev?',
     body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
     isRead: false,
     sentAt: 1551133930594
 }, {
     id: 2,
-    subject: 'koko',
+    to: 'momo@gmail.com',
+    subject: 'Lorem ipsum dolor sit amet consectetur' 
+    ,
     body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
     isRead: true,
     sentAt: 1551133930594
 }, {
     id: 3,
-    subject: 'hello',
+    to: 'koko@gmail.com',
+    subject: 'hello, hello hello hello',
     body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
     isRead: true,
     sentAt: 1551133930594
 }, {
     id: 4,
+    to: 'muki@gmail.com',
     subject: 'Wassap4?',
     body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
     isRead: false,

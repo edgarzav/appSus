@@ -1,14 +1,16 @@
+import EmailSideNav from "./EmailSideNav.jsx";
+import EmailFilter from "./EmailFilter.jsx"
+import EmailCompose from '../cmps/EmailCompose.jsx'
 
 export default class EmailSideBar extends React.Component {
 
     render() {
-        return <ul className="sideBar">
-            <li onClick={this.props.onCompose}>Compose</li>
-            <li>Inbox</li>
-            <li>Starred</li>
-            <li>Sent Mail</li>
-            <li>drafts</li>
-        </ul>
+        return <div className="side-bar flex diraction-column align-center">
+
+            <EmailFilter filterBy={this.props.filterBy} onSetFilter={this.props.onSetFilter} />
+              <EmailCompose onSendEmail={this.props.onSendEmail} />
+            <EmailSideNav onCompose={this.props.onCompose} />
+        </div>
 
     }
 }

@@ -16,16 +16,16 @@
     align-items: baseline;
 }
 
+.align-center{
+    align-items: center;
+}
+
 .diraction-column {
     flex-direction: column;
 }
 
 .justify-around {
     justify-content: space-around;
-}
-
-.align-baseline {
-    align-items: baseline;
 }
 
 .align-flex-start {

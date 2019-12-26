@@ -7,8 +7,8 @@ export default class EmailFilter extends React.Component {
     }
 
     render() {
-        return <form >
-            <input type="text" className="book-input" placeholder="search Email" value={this.props.filterBy.subject}
+        return <form className="flex align-center diraction-column">
+            <input type="text" className="email-input-search" placeholder="search Email" value={this.props.filterBy.subject}
                 onChange={this.changeInput} name="subject"></input>
             <select className="filter-select" name="isRead" id="" onChange={this.changeInput}>
                 <option value=''></option>

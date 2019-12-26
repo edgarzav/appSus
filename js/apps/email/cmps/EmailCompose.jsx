@@ -4,15 +4,17 @@ export default class EmailCompose extends React.Component {
     state = { display: false, to: '', cc: '', subject: '', body: '' }
 
     componentDidMount() {
-        this.eventKiller = eventBusService.on('toggleModal', (em) => {
-            this.setState(prevState => ({ display: !prevState.display, em }))
+        this.eventKiller = eventBusService.on('toggleModal', (email) => {
+            this.setState(prevState => ({ display: !prevState.display, ...email }))
         })
+        
     }
 
-    closeMsg = () => this.setState({ display: false })
+    closeCompose = () => this.setState({ display: false })
 
     componentWillUnmount() {
         this.eventKiller && this.eventKiller();
+        this.setState({to: '', cc: '', subject: '', body: ''})
     }
 
     inputChange = (ev) => {
@@ -21,9 +23,11 @@ export default class EmailCompose extends React.Component {
     }
 
 
-    onSaveEmail = () => {        
+    onSaveEmail = () => {
         const { to, cc, subject, body } = this.state
         this.props.onSendEmail({ to, cc, subject, body })
+        
+        this.closeCompose()
     }
 
 

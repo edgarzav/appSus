@@ -23,13 +23,25 @@ export default class EmailDetails extends React.Component {
         })
     }
 
+    onDeleteEmail = () => {
+        this.props.onDeleteEmail(this.state.email.id)
+    }
+
+    onReplayEmail= () =>{        
+        this.props.onReplayEmail({...this.state.email})
+    }
+
     render() {
         if (this.state.email) {
             const { subject, body, sentAt } = this.state.email
-            return <div className="email-details">
-                <h2>{subject}</h2>
-                <p>{body}</p>
-                <p>{sentAt}</p>
+            return <div  className="email-details-container flex">
+                <button className="rubbish-bin-btn" onClick={this.onDeleteEmail}></button>
+                <button className="reply-btn" onClick={this.onReplayEmail}></button>
+                <div className="email-details">
+                    <h2>{subject}</h2>
+                    <p>{body}</p>
+                    <p>{sentAt}</p>
+                </div>
             </div>
         } else return 'No Emails'
     }

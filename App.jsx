@@ -10,7 +10,7 @@ const history = createBrowserHistory()
 class App extends React.Component {
     render() {
         return (
-            <main>
+            <main className="flex diraction-column">
                 <Router history={history}>
                     <NavBar/>
                     <Switch>

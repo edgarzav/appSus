@@ -6,10 +6,11 @@ export default class EmailSearch extends React.Component {
     }
 
     render() {
-        return <form >
-            <input type="text" className="book-input" placeholder="search Email" value={this.props.searchBy}
-                onChange={this.changeInput} name="text"></input>
-        </form>
+        return 1
+        // return <form >
+        //     <input type="text" className="book-input" placeholder="search Email" value={this.props.searchBy}
+        //         onChange={this.changeInput} name="text"></input>
+        // </form>
     }
 }
 

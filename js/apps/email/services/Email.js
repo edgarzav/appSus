@@ -6,7 +6,7 @@ export default class Email {
         this.id = Email.nextId++
         this.subject = subject
         this.body = body
-        this.isRead = false
+        this.isRead = true
         this.sentAt = Date.now()
 
     }

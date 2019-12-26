@@ -5,11 +5,23 @@ export default { getEmails, getEmailById, toggleReadMail, addEmail }
 let gEmails;
 
 
-function getEmails(searchBy) {
-    const emails = (!searchBy) ? [...gEmails] :
-        gEmails.filter(email => email.subject.toLowerCase().includes(searchBy))
+function getEmails(filterBy) {
+    const emails = (!filterBy) ? [...gEmails] :
+        gEmails.filter(email => {
 
+            return email.subject.toLowerCase().includes(filterBy.subject)
+                && (filterBy.isRead === '' || email.isRead == filterBy.isRead)
+        })
     return Promise.resolve(emails)
+}
+
+
+function getBooks(filterBy) {
+    const books = (!filterBy) ? [...gBooks]
+        : gBooks.filter(book => book.title.includes(filterBy.title)
+            && book.listPrice.amount < filterBy.price);
+
+    return Promise.resolve(books)
 }
 
 

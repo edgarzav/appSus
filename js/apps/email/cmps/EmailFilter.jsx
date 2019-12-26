@@ -1,19 +1,21 @@
 
 export default class EmailFilter extends React.Component {
     changeInput = (ev) => {
-        console.log(ev.target.value);
-
+        const field = ev.target.name;
         const value = ev.target.value;
-        this.props.onSetFilter(value)
+        this.props.onSetFilter({ [field]: value })
     }
 
     render() {
-        return <select className="filter-select" name="" id="" onChange={this.changeInput}>
-            <option value="read">Read</option>
-            <option value="unread">Unread</option>
-        </select>
-
-
+        return <form >
+            <input type="text" className="book-input" placeholder="search Email" value={this.props.filterBy.subject}
+                onChange={this.changeInput} name="subject"></input>
+            <select className="filter-select" name="isRead" id="" onChange={this.changeInput}>
+                <option value=''></option>
+                <option value={1}>Read</option>
+                <option value={0}>Unread</option>
+            </select>
+        </form>
     }
 }
 

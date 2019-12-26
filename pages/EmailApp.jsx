@@ -4,7 +4,7 @@ import EmailSideBar from '../js/apps/email/cmps/EmailSideBar.jsx'
 import EmailCompose from '../js/apps/email/cmps/EmailCompose.jsx'
 import eventBusService from '../services/eventBusService.js'
 import EmailDetails from '../js/apps/email/pages/EmailDetails.jsx'
-import EmailSearch from '../js/apps/email/cmps/EmailSearch.jsx'
+// import EmailSearch from '../js/apps/email/cmps/EmailSearch.jsx'
 import EmailFilter from '../js/apps/email/cmps/EmailFilter.jsx'
 
 const Router = ReactRouterDOM.HashRouter
@@ -13,14 +13,20 @@ const { createBrowserHistory } = History
 const history = createBrowserHistory()
 export default class EmailApp extends React.Component {
 
-    state = { emails: [], searchBy: '',filterBy: '' }
+    state = {
+        emails: [],
+        filterBy: {
+            subject: '',
+            isRead: ''
+        }
+    }
 
     componentDidMount() {
         this.loadEmails();
     }
 
     loadEmails = () => {
-        emailService.getEmails(this.state.searchBy).then(emails => {
+        emailService.getEmails(this.state.filterBy).then(emails => {
             this.setState({ emails })
         })
     }
@@ -41,13 +47,8 @@ export default class EmailApp extends React.Component {
         eventBusService.emit('toggleModal');
     }
 
-    onSetSearch = (newSearchField) => {
-        this.setState(prevstate => ({ searchBy: newSearchField }), this.loadEmails);
-    }
-
-    onSetFilter= (newfFilterBy) =>{
-        this.setState(prevstate => ({ filterBy: { ...prevstate.filterBy, ...newFilterField } }), this.loadBooks);
-//not finished,merge the filterBy option 
+    onSetFilter = (newFilterField) => {
+        this.setState(prevstate => ({ filterBy: { ...prevstate.filterBy, ...newFilterField } }), this.loadEmails);
     }
 
 
@@ -56,8 +57,8 @@ export default class EmailApp extends React.Component {
             {/* const {searchBy, emails} = this.state */}
             <EmailCompose onSendEmail={this.onSendEmail} />
             <EmailSideBar onCompose={this.onCompose} />
-            <EmailSearch searchBy={this.state.searchBy} onSetSearch={this.onSetSearch} />
-            <EmailFilter onSetFilter={this.onSetFilter}/>
+            {/* <EmailSearch filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} /> */}
+            <EmailFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
             <EmailList emails={this.state.emails} onReadToggle={this.onReadToggle} />
             <Router history={history}>
                 <Switch>

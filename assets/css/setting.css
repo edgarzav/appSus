@@ -1,15 +1,22 @@
-img{
-    width:100%;
+img {
+    width: 100%;
 }
-p { word-break: break-all }
 
-a{
+p {
+    word-break: break-all
+}
+
+a {
     text-decoration: none;
     color: inherit;
 }
 
-ul{
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+button:focus {
+    outline: 0;
 }

@@ -1,10 +1,8 @@
 import EmailList from '../js/apps/email/cmps/EmailList.jsx'
 import emailService from '../js/apps/email/services/emailService.js'
 import EmailSideBar from '../js/apps/email/cmps/EmailSideBar.jsx'
-import EmailCompose from '../js/apps/email/cmps/EmailCompose.jsx'
 import eventBusService from '../services/eventBusService.js'
 import EmailDetails from '../js/apps/email/pages/EmailDetails.jsx'
-import EmailFilter from '../js/apps/email/cmps/EmailFilter.jsx'
 
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
@@ -14,9 +12,11 @@ export default class EmailApp extends React.Component {
 
     state = {
         emails: [],
+        displayBar: true,
         filterBy: {
             subject: '',
-            isRead: ''
+            isRead: '',
+            type: 'inbox'
         }
     }
 
@@ -36,13 +36,13 @@ export default class EmailApp extends React.Component {
         })
     }
 
-
-
     onCompose = () => {
         eventBusService.emit('toggleModal', '');
     }
 
     onSetFilter = (newFilterField) => {
+        console.log(this.state.filterBy);
+        
         this.setState(prevstate => ({ filterBy: { ...prevstate.filterBy, ...newFilterField } }), this.loadEmails);
     }
 
@@ -65,19 +65,38 @@ export default class EmailApp extends React.Component {
         eventBusService.emit('toggleModal', email);
     }
 
+    toggleClass = () => {
+        // console.log(this.state);
+
+        const currentState = this.state.displayBar;
+        this.setState({ displayBar: !currentState });
+    }
+    // onClick={this.props.toggleClass} 
+
+    onSetEmailType = (type) => {
+        this.setState(({ filterBy: { ...type } }));
+    }
+
+    onStarEmail = (emailId) =>{
+      console.log('star');
+      
+        emailService.setEmailStar(emailId).then(emails => {
+            this.setState({ emails })
+        })
+    }
 
     render() {
         return <div className="email-app flex">
-            {/* <EmailCompose onSendEmail={this.onSendEmail} /> */}
-
-            <EmailSideBar onSendEmail={this.onSendEmail} onSetFilter={this.onSetFilter} filterBy={this.state.filterBy} onCompose={this.onCompose} />
-            {/* <EmailFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} /> */}
-            <EmailList emails={this.state.emails} onReadToggle={this.onReadToggle} />
+            <button onClick={this.toggleClass} className="display-toggle-btn">☰</button>
+            <EmailSideBar onSetEmailType={this.onSetEmailType} displayBar={this.state.displayBar} toggleClass={this.toggleClass}
+                onSendEmail={this.onSendEmail} onSetFilter={this.onSetFilter}
+                filterBy={this.state.filterBy} onCompose={this.onCompose} />
+            <EmailList emailType={this.state.filterBy.type} emails={this.state.emails} onReadToggle={this.onReadToggle} />
 
             <Router history={history}>
                 <Switch>
                     <Route render={(props) => <EmailDetails {...props}
-                        onDeleteEmail={this.onDeleteEmail} onReplayEmail={this.onReplayEmail} />}
+                        onDeleteEmail={this.onDeleteEmail} onStarEmail={this.onStarEmail} onReplayEmail={this.onReplayEmail} />}
                         path="/email/:id" exact></Route>
                 </Switch>
             </Router>

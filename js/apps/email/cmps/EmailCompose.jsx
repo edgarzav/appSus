@@ -33,9 +33,9 @@ export default class EmailCompose extends React.Component {
 
     render() {
         const { to, cc, subject, body } = this.state
-
-        if (!this.state.display) return null;
-        return <div className="compose-email">
+        // className={`${!this.props.displayBar? 'hide' : ''} side-bar flex diraction-column align-center`}
+        // if (!this.state.display) return null;
+        return <div className={`${!this.state.display ? 'hide-compose' : ''} compose-email`}>
             <h2 className="compose-title">Message</h2>
             <form className="flex diraction-column">
                 <input type="text" value={to} placeholder="to" name="to" onChange={this.inputChange} />

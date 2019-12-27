@@ -8,6 +8,7 @@ export default class Email {
         this.body = body
         this.isRead = true
         this.sentAt = Date.now()
+        this.type = 'sent'
 
     }
 }

@@ -7,9 +7,7 @@ export default class EmailPreview extends React.Component {
     }
 
     render() {
-        const { subject, isRead, id, to,body, sentAt } = this.props.email
-        // let formatedSubject = subject.substring(0, 20)
-        // formatedSubject = formatedSubject.substring(0, formatedSubject.lastIndexOf(' '))
+        const { subject, isRead, id, to, body, sentAt } = this.props.email
         const boldClass = 'bold'
         const unBoldClass = 'unBold'
         const time = new Date(sentAt)

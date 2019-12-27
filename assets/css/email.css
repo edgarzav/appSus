@@ -2,6 +2,10 @@ h2 {
   font-weight: unset;
 }
 
+p {
+  margin: 0;
+}
+
 .unBold {
   font-weight: 100;
 }
@@ -35,6 +39,18 @@ h2 {
   overflow: hidden;
 }
 
+.display-toggle-btn {
+  position: absolute;
+  left: 10px;
+  left: 10px;
+  top: 73px;
+  font-size: 1.6rem;
+  background-color: #f3f3f3;
+  border: none;
+  color: #0078d6;
+  cursor: pointer;
+}
+
 .read-toggle-btn {
   background-image: url(../img/email/envelope-readed.svg);
   background-repeat: no-repeat;
@@ -47,6 +63,7 @@ h2 {
   margin: 10px;
   grid-area: 1/2;
   text-align: end;
+  cursor: pointer;
 }
 
 .email-details-container {
@@ -57,28 +74,51 @@ h2 {
   border-left: 1px solid rgb(228, 227, 227);
 }
 
+.details-body {
+  margin: 20px 0;
+}
+
+.activeSideItem {
+  background-color: rgb(228, 227, 227);
+}
+
 .rubbish-bin-btn {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   border: none;
   background-image: url(../img/email/rubbish-bin.svg);
   background-repeat: no-repeat;
-  background-size: 25px;
+  background-size: 20px;
   position: absolute;
-  right: 60px;
+  right: 45px;
   top: 10px;
+  cursor: pointer;
 }
 
 .reply-btn {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   border: none;
   background-image: url(../img/email/reply.svg);
   background-repeat: no-repeat;
-  background-size: 25px;
+  background-size: 20px;
   position: absolute;
   right: 10px;
   top: 10px;
+  cursor: pointer;
+}
+
+.star-btn {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-image: url(../img/email/starred.svg);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  position: absolute;
+  right: 80px;
+  top: 10px;
+  cursor: pointer;
 }
 
 .email-details {
@@ -88,7 +128,14 @@ h2 {
   background-color: #fff;
 }
 
+.hide-compose {
+  transform: translate(0, 500px);
+  transition: transform .2s;
+  max-width: 0;
+}
+
 .compose-email {
+  transition: transform .4s;
   width: 500px;
   display: flex;
   flex-direction: column;
@@ -111,10 +158,12 @@ h2 {
   width: 90px;
   height: 35px;
   border-radius: 7px;
-  background-color: royalblue;
+  background-color: #0078d6;
   border: none;
+  color: #fff;
   margin-bottom: 10px;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 textarea {
@@ -127,17 +176,29 @@ textarea {
 
 .side-bar {
   width: 165px;
+  margin-top: 50px;
+  transition: transform .4s;
+}
+
+.hide {
+  transform: translate(-500px, 0);
+  transition: transform .2s;
+  max-width: 0;
 }
 
 .compose-item {
-  border: 1px solid rgb(206, 205, 205);
-  width: 250px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  text-align: center;
+  width: 118px;
+  background-image: url(../img/email/plus.svg);
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: 13px 8px;
+  border: 1px solid #0078d6;
+  color: #0078d6;
+  text-align: end;
   border-radius: 20px;
   font-size: 1.3rem;
   padding: 5px;
-  width: 100px;
+  padding-right: 14px;
   cursor: pointer;
 }
 
@@ -154,8 +215,10 @@ textarea {
 
 .side-nav-item {
   text-align: center;
+  width: 140px;
   padding: 10px;
   border-bottom: 1px solid rgb(233, 232, 232);
+  cursor: pointer;
 }
 
 .preview-sender-name {
@@ -192,4 +255,36 @@ textarea {
   /* position: absolute; */
   right: 17px;
   top: 3px;
+}
+
+.inbox-icon {
+  background-image: url(../img/email/inbox.svg);
+  background-size: 15px;
+  background-repeat: no-repeat;
+  display: block;
+  width: 25px;
+}
+
+.sent-icon {
+  background-image: url(../img/email/sent.svg);
+  background-size: 15px;
+  background-repeat: no-repeat;
+  display: block;
+  width: 25px;
+}
+
+.starred-icon {
+  background-image: url(../img/email/starred.svg);
+  background-size: 15px;
+  background-repeat: no-repeat;
+  display: block;
+  width: 25px;
+}
+
+.drafts-icon {
+  background-image: url(../img/email/drafts.svg);
+  background-size: 15px;
+  background-repeat: no-repeat;
+  display: block;
+  width: 25px;
 }

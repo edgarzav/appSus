@@ -1,26 +1,36 @@
-
+import ColorPlate from './ColorPlate.jsx'
 export default class NoteTools extends React.Component {
-    
-    state={note:{}}
-    componentDidMount() {
-         console.log(this.props.note);
-        this.setState({note:this.props.note})
+
+
+    onDelete = (event) => {
+        event.stopPropagation();
+        this.props.onDelete(this.props.note.id)
+    }
+    onPinned = () => {
+        this.props.onPinned(this.props.note.id)
     }
 
-
-    onDelete = (e) => {
-        console.log(this.props.note);
+    onChangeColor = (color) => {
+      this.props.onChangeColor(color,this.props.note.id)
     }
 
     render() {
-        
         return (
-           
-            <section className={this.props.className+" flex"} >
-                <label className="tools-btn" htmlFor="tools-pinned"><img className="tools-btn" src="../../../../../assets/img/notes/thumbtack-solid.svg" alt="" /></label>
-                <label className="tools-btn" htmlFor="tools-delete"><img className="tools-btn" src="../../../../../assets/img/notes/trash-alt-solid.svg" alt="" /></label>
-                <button id="tools-pinned" className="tools-pinned-btn"></button>
-                <button onClick={this.onDelete} id="tools-delete" className="tools-delete-btn" ></button>
+            <section className={this.props.className + " flex note-tools"} >
+                <div onClick={this.onPinned} className="font-awsome-pinned">
+                    <i className="fas fa-thumbtack"></i>
+                </div>
+                <div onClick={this.onDelete} className="font-awsome-delete">
+                    <i className="far fa-trash-alt"></i>
+                </div>
+                <div  className="font-awsome-color">
+                    <i className="fas fa-palette"></i>
+                    <div className="color-plate">
+                    <ColorPlate onChangeColor={this.onChangeColor}/>
+                    </div>
+                </div>
+
+
             </section>
         )
     }

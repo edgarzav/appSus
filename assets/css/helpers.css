@@ -31,6 +31,12 @@
 .align-flex-start {
     align-items: flex-start;
 }
+.align-flex-end{
+    align-items: flex-end;
+}
+.align-center{
+    align-items: center;
+}
 
 .flex-grow {
     flex-grow: 1;
@@ -43,3 +49,34 @@
     padding: 0;
     list-style-type: none;
 }
+
+.done{
+    text-decoration: line-through ;
+}
+
+/* colors */
+
+.black{
+    color:black !important;
+}
+
+
+.screen{
+    top:0;
+    left:0;
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ebebebce;
+    cursor: pointer;
+    transition: opacity .6s;
+    z-index:2;
+}
+
+/* over-flow */
+.over-flow{
+    overflow-y: scroll;
+}
+
+
+

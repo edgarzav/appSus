@@ -4,12 +4,16 @@ import NodeTools from '../cmps/NoteTools.jsx'
 import UpdateText from '../cmps/noteText/UpdateText.jsx'
 import UpdateImg from '../cmps/noteImg/UpdateImg.jsx'
 import UpdateTodos from '../cmps/noteTodos/UpdateTodos.jsx'
-export default class NoteDetails extends React.Component {
+export default class PageDetails extends React.Component {
 
     state = { note: {} }
     componentDidMount() {
+        this.props.setScreenMode(true)
         this.loadNote();
 
+    }
+    componentWillUnmount() {
+        this.props.setScreenMode(false)
     }
 
     componentDidUpdate(prevProps) {
@@ -54,10 +58,13 @@ export default class NoteDetails extends React.Component {
         let updateValues = this.getRightCmpToUpdate()
         return (
 
-            <section className="details-container flex diraction-column"  >
-                <button className="close-btn" onClick={this.close}>close</button>
+            <section style={{ backgroundColor: this.state.note.style.backgroundColor }}
+                className="details-container flex diraction-column"  >
+                <div className="close-btn" onClick={this.close}>
+                    <i className="fas fa-times"></i></div>
                 {updateValues}
                 <NodeTools note={this.state.note}
+                    onChangeColor={this.props.onChangeColor}
                     onDelete={this.props.onDelete}
                     onPinned={this.props.onPinned}
                     className="note-details-tools-container" />

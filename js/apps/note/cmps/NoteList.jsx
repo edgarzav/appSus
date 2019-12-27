@@ -5,8 +5,13 @@ export default function NoteList(props) {
         {props.notes.map((note) => {
             if (note.isPinned === props.isPinned) {
                 return <li key={note.id} className="note-container clean-list">
-                    <NotePreview note={note} />
-                    <NoteTools note={note} className='note-tools-container' onDelete={props.onDelete} onPinned={props.onPinned} />
+                    <NotePreview note={note}
+                        onToggleDoneTodo={props.onToggleDoneTodo} />
+                    <NoteTools note={note}
+                        className='note-tools-container'
+                        onDelete={props.onDelete}
+                        onChangeColor={props.onChangeColor}
+                        onPinned={props.onPinned} />
                 </li>
             }
             return null

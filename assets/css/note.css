@@ -25,7 +25,7 @@
 .innerNote {
     max-width: 240px;
     padding: 10px 10px 35px 10px;
-    background-color: #fff;
+    /* background-color: #fff; */
     min-height: 4em;
     border-radius: 2px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
@@ -33,6 +33,15 @@
 
 .note-container:hover .innerNote {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+.todo-item{
+    list-style-type: upper-roman;
+    margin-left:13px;
+    width:80%;
+}
+.todo-item p{
+    display:inline-block
 }
 
 .noteAdd-container {
@@ -43,7 +52,10 @@
 }
 
 .note-input-radio {
-    width: 15px;
+    font-size:1.5rem;
+    margin:0 7px;
+    cursor: pointer;
+    color:#696969;
 }
 
 #txt-add {
@@ -83,31 +95,112 @@
     position: relative;
 }
 
+
 .color-plate{
     right: -278%;
     position: absolute;
     width:100px;
-    height: 40px;
+    height: 45px;
     border:1px solid red;
     z-index: 3;
+     display:none; 
+}
+.font-awsome-color:hover .color-plate{
+    display: block;
+}
+
+.color-plate-item{
+    margin:5px;
+    border-radius: 999px;
+    width:12px;
+    height: 12px;
 }
 
 .details-container {
     position: fixed;
     margin: 0 auto;
+    padding: 10px;
     left: 25%;
-    top: 40%;
+    top: 20%;
     display: flex;
     min-height: 130px;
-    width: 600px;
+    width: 400px;
     z-index: 10;
+    color:#696969;
     background-color: #fff;
-    border: 1px solid black;
+    border-radius: 2px;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 3px 2px -2px rgba(0, 0, 0, 0.2), 0 2px 6px 0 rgba(0, 0, 0, 0.12);
+}
+
+.details-container input{
+    border:none;
+    outline:none;
+    background-color: transparent;
+    border-bottom: 2px solid #696969 ;
+    padding:5px 0;
+    margin:7px 0;
+    color:black;
+}
+
+.details-container h3{
+    position: absolute;
+    top:-10px;
+}
+
+.todos-update-container{
+    margin:40px 0;
+    overflow-y: scroll;
+    max-height: 350px;
+   
+}
+
+.add-todo-btn{
+    position: absolute;
+    top: 4px;
+    right: 50px;
+    font-size: 1.8rem;
+    cursor:pointer;
 }
 
 .close-btn {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 3px;
+    right: 7px;
+    font-size:2rem;
+    cursor:pointer;
 }
 
+
+@media (max-width: 600px) {
+    .details-container{
+        position:absolute;
+        align-items: center;
+        top:0;
+        left:0;
+        width:100%;
+        height:100vh;
+        padding:0;
+    }
+    .text-update-container{
+        
+        justify-content: center;
+        margin-top:20%;
+        flex-grow:0;
+    }
+    .note-details-tools-container{
+        display: flex;
+        margin-bottom: 40px;
+    }
+
+     .moblie-overflow-hidden{
+         position: absolute;
+         font-size: 1.3rem;
+        overflow:hidden;
+        height: 100vh;
+        
+    }
+    .screen{
+        display: none;
+    }
+   
+}

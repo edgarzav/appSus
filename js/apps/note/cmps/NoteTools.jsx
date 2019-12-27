@@ -10,8 +10,8 @@ export default class NoteTools extends React.Component {
         this.props.onPinned(this.props.note.id)
     }
 
-    onChangeColor = () => {
-        console.log('change color')
+    onChangeColor = (color) => {
+      this.props.onChangeColor(color,this.props.note.id)
     }
 
     render() {
@@ -23,11 +23,11 @@ export default class NoteTools extends React.Component {
                 <div onClick={this.onDelete} className="font-awsome-delete">
                     <i className="far fa-trash-alt"></i>
                 </div>
-                <div onClick={this.onChangeColor} className="font-awsome-color">
+                <div  className="font-awsome-color">
                     <i className="fas fa-palette"></i>
-                    {/* <div className="color-plate">
-                    <ColorPlate/>
-                    </div> */}
+                    <div className="color-plate">
+                    <ColorPlate onChangeColor={this.onChangeColor}/>
+                    </div>
                 </div>
 
 

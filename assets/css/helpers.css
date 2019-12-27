@@ -78,5 +78,9 @@
     overflow-y: scroll;
 }
 
+/* margin */
+.margin-bottom-medium{
+    margin-bottom:50px;
+}
 
 

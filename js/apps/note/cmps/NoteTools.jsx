@@ -17,7 +17,8 @@ export default class NoteTools extends React.Component {
     render() {
         return (
             <section className={this.props.className + " flex note-tools"} >
-                <div onClick={this.onPinned} className="font-awsome-pinned">
+                <div onClick={this.onPinned} 
+                className={this.props.note.isPinned===true? 'black font-awsome-pinned':'font-awsome-pinned'}>
                     <i className="fas fa-thumbtack"></i>
                 </div>
                 <div onClick={this.onDelete} className="font-awsome-delete">

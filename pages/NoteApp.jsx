@@ -58,8 +58,8 @@ export default class NoteApp extends React.Component {
             <div className={this.state.screenMode?'moblie-overflow-hidden':''}>
                 {this.state.screenMode && <div className="screen" onClick={this.closeModal}></div>}
                 <NoteAdd handleChange={this.onHandleChange} />
-                <label >
-                    Pinned:
+                <label className="pinned-container">
+                   <h2>Pinned:</h2> 
                     <NoteList notes={this.state.notes}
                         onToggleDoneTodo={this.onToggleDoneTodo}
                         onChangeColor={this.onChangeColor}

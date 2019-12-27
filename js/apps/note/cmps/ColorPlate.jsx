@@ -1,7 +1,7 @@
 
 export default class ColorPlate extends React.Component {
 
- state={colors:['white','yellow','red','orange','purple','pink','green','brown']}
+ state={colors:['#FFFF','#F6FE88','#C4B8FE','#FF7F50','#BC8F8F','#FFF8DC','#66CDAA','#FAC980']}
     
  onChangeColor=(event)=>{
      this.props.onChangeColor(event.target.id)

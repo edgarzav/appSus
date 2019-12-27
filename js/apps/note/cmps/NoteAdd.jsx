@@ -12,7 +12,8 @@ export default class NoteAdd extends React.Component {
         this.setState({ [field]: value })
 
     }
-    addNote = () => {
+    onAddNote = () => {
+        if(this.state.txtInput==='')return
         this.props.handleChange(this.state.txtInput, this.state.noteType)
         this.setState({ txtInput: '', noteType: 'NoteText' })
     }
@@ -26,7 +27,7 @@ export default class NoteAdd extends React.Component {
                 placeholder='Please enter a url img..'
               break;
             default:
-                placeholder='Write a comment..'
+                placeholder='Write your note down..'
           }
           return placeholder
     }
@@ -69,7 +70,7 @@ export default class NoteAdd extends React.Component {
                     checked={this.state.noteType === 'NoteTodos'}
                     type="radio" name="noteType" value="NoteTodos" />
 
-                <button onClick={this.addNote}>Add</button>
+                <button className="add-btn" onClick={this.onAddNote}>Add</button>
 
 
             </section>

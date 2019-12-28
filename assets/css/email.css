@@ -6,7 +6,24 @@ p {
   margin: 0;
 }
 
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .email-app {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: .4s;
   background-color: rgb(243, 243, 243);
   flex: 1;
   color: #1f1f1f;
@@ -16,6 +33,7 @@ p {
   margin-top: 50px;
   background-color: white;
   width: 400px;
+  border: 1px solid rgb(228, 227, 227);
 }
 
 .email-item {
@@ -48,11 +66,17 @@ p {
 }
 
 .email-details-container {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: .4s;
+  margin: 10px;
   margin-top: 50px;
   position: relative;
   flex: 1;
   background-color: #fff;
-  border-left: 1px solid rgb(228, 227, 227);
+  border: 1px solid rgb(228, 227, 227);
 }
 
 .details-body {
@@ -115,14 +139,11 @@ p {
 
 .hide-compose {
   transform: translate(0, 500px);
-  transition: transform .2s;
   max-height: 0;
 }
 
 .minimize-compose {
-  transform: translate(0, -15px);
-  transition: transform .2s;
-  max-height: 22px;
+  transform: translate(0, 302px);
 }
 
 .compose-email {
@@ -195,16 +216,24 @@ textarea {
 }
 
 .side-bar {
-  width: 165px;
+  max-width: 165px;
   margin-top: 50px;
-  transition: transform .4s;
+  transition: max-width 0.4s;
+  
 }
 
-.hide {
-  transform: translate(-500px, 0);
-  transition: transform .2s;
+.hide-side-bar {
+  transform: translate(-165px, 0);
   max-width: 0;
 }
+
+/* .fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 2s;
+} */
 
 .compose-item {
   width: 118px;
@@ -212,14 +241,43 @@ textarea {
   background-size: 18px;
   background-repeat: no-repeat;
   background-position: 13px 8px;
-  border: 1px solid #0078d6;
+  border: 4px solid;
   color: #0078d6;
   text-align: end;
   border-radius: 20px;
   font-size: 1.3rem;
   padding: 5px;
+  position: relative;
   padding-right: 14px;
   cursor: pointer;
+}
+
+.compose-item::before, .compose-item::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 4px;
+  background-color: rgb(243, 243, 243);
+  transform: skewX(50deg);
+  transition: .4s linear;
+}
+
+.compose-item::before {
+  top: -4px;
+  left: 10%;
+}
+
+.compose-item::after {
+  bottom: -4px;
+  right: 10%;
+}
+
+.compose-item:hover::before {
+  left: 80%;
+}
+
+.compose-item:hover::after {
+  right: 80%;
 }
 
 .email-input-search {

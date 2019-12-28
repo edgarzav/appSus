@@ -37,15 +37,15 @@ export default class EmailDetails extends React.Component {
 
     render() {
         if (this.state.email) {
-            const { subject, body, sentAt } = this.state.email
+            const { subject, body, sentAt,to } = this.state.email
             return <div  className="email-details-container flex">
                 <div className="email-details">
                     <h2>{subject}</h2>
+                    <h2>{to.substring(0, to.indexOf('@'))}{to}</h2>
                 <button className="rubbish-bin-btn" onClick={this.onDeleteEmail}></button>
                 <button className="reply-btn" onClick={this.onReplayEmail}></button>
                 <button className="star-btn" onClick={this.onStarEmail}></button>
-                    <p>{new Date(sentAt).toLocaleDateString()}</p>
-                    <p>{new Date(sentAt).toLocaleTimeString()}</p>
+                    <p>{new Date(sentAt).toLocaleDateString()} {new Date(sentAt).toLocaleTimeString()}</p>
                     <p className="details-body">{body}</p>
                 </div>
             </div>

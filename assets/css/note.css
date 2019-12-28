@@ -40,6 +40,10 @@
     border-radius: 2px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
+.innerNote iframe{
+    width:100%;
+}
+
 
 .note-container:hover .innerNote {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
@@ -80,13 +84,16 @@
 #todos-add {
     display: none;
 }
+#video-add{
+    display: none;
+}
 
 .add-btn {
     outline: none;
     cursor: pointer;
     color: #20bf6b !important;
     text-transform: uppercase;
-    background: #ffffff;
+    background: transparent;
     padding: 5px;
     border: 1px solid #20bf6b !important;
     border-radius: 6px;
@@ -270,6 +277,9 @@
     }
     .note-details-tools-container>* {
         font-size: 1.5rem;
+    }
+    .updateImg-container img{
+        margin-top:60px
     }
     .note-tools {
         margin-top: 40px;

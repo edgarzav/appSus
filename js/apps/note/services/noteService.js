@@ -1,7 +1,18 @@
 import utils from '../../../../services/utils.js'
 
 let gNotes = utils.loadFromStorage('notes', [])
-
+let x = {
+    id: 'fdsfdsf',
+    isPinned: false,
+    type: "NoteVideo",
+    info: {
+        url: "http://some-img/me",
+        title: "Me playing Mi"
+    },
+    style: {
+        backgroundColor: "#00d"
+    }
+}
 
 
 const getNotes = () => {
@@ -11,9 +22,15 @@ const getNotes = () => {
 const createInfoByType = (noteType, txtInput) => {
     let id = utils.getRandomId()
     if (noteType === 'NoteText') return { txt: txtInput }
-    else if (noteType === 'NoteImg') return { url: txtInput }
+    else if (noteType === 'NoteImg' ) return { url: txtInput }
     else if (noteType === 'NoteTodos') return {
         todos: [{ id, txt: txtInput, doneAt: null }]
+    }
+    else if(noteType === 'NoteVideo'){
+        let url =txtInput
+       url= url.replace('watch?v=', 'embed/')
+        console.log(url)
+        return{url}
     }
 }
 
@@ -60,9 +77,28 @@ const onToggleDoneTodo = (noteId, todoId) => {
 const deleteTodo = (noteId, todoId) => {
     let note = gNotes.find(note => note.id === noteId)
     const todoIndex = note.info.todos.findIndex(todo => todo.id === todoId)
-    note.info.todos.splice(todoIndex,1)
+    note.info.todos.splice(todoIndex, 1)
     utils.saveToStorage('notes', [...gNotes])
-    return Promise.resolve({...note})
+    return Promise.resolve({ ...note })
+}
+
+const changeNoteUrl = (noteId, newUrl) => {
+    gNotes = gNotes.map((noteToFind) => {
+        if (noteToFind.id === noteId) {
+            let noteToChange = { ...noteToFind }
+            if(noteToFind.type === 'NoteVideo'){
+                noteToChange.info.url= newUrl.replace('watch?v=', 'embed/')
+            }
+            else{
+                noteToChange.info.url = newUrl
+            }
+            return noteToChange
+        } else {
+            return noteToFind
+        }
+    })
+    utils.saveToStorage('notes', [...gNotes])
+    return Promise.resolve(true)
 }
 
 const deleteNote = (noteId) => {
@@ -101,5 +137,6 @@ export default {
     changeNoteColor,
     onToggleDoneTodo,
     isIdExist,
-    deleteTodo
+    deleteTodo,
+    changeNoteUrl
 }

@@ -1,9 +1,10 @@
 import NoteText from './noteText/NoteText.jsx'
 import NoteImg from './noteImg/NoteImg.jsx'
 import NoteTodos from './noteTodos/NoteTodos.jsx'
+import NoteVideo from './noteVideo/NoteVideo.jsx'
 const { Link } = ReactRouterDOM
 export default function NotePreview(props) {
-    const  id  = props.note.id
+    const id = props.note.id
     switch (props.note.type) {
         case 'NoteText':
             return <Link to={`/note/${id}`}> <NoteText {...props} /></Link>
@@ -11,7 +12,11 @@ export default function NotePreview(props) {
             return <Link to={`/note/${id}`}><NoteImg {...props} /></Link>
         case 'NoteTodos':
             return <Link to={`/note/${id}`}><NoteTodos {...props} /></Link>
+        case 'NoteVideo':
+            return <Link to={`/note/${id}`}><NoteVideo {...props} /></Link>
+
         default:
             return //...some default error view
     }
 }
+

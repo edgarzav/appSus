@@ -4,6 +4,7 @@ import NodeTools from '../cmps/NoteTools.jsx'
 import UpdateText from '../cmps/noteText/UpdateText.jsx'
 import UpdateImg from '../cmps/noteImg/UpdateImg.jsx'
 import UpdateTodos from '../cmps/noteTodos/UpdateTodos.jsx'
+import UpdateVideo from '../cmps/noteVideo/UpdateVideo.jsx'
 export default class PageDetails extends React.Component {
 
     state = { note: {} }
@@ -46,6 +47,14 @@ export default class PageDetails extends React.Component {
     onAddNewTodo=(note)=>{
         this.setState({ note })
     }
+    onChangeImg=(noteId,newUrl)=>{
+       noteService.changeNoteUrl(noteId,newUrl)
+       .then(this.loadNote())
+    }
+    onChangeVideo=(noteId,newUrl)=>{
+        noteService.changeNoteUrl(noteId,newUrl)
+        .then(this.loadNote())
+    }
 
     getRightCmpToUpdate = () => {
         switch (this.state.note.type) {
@@ -55,7 +64,10 @@ export default class PageDetails extends React.Component {
                     handleChange={this.onHandleChange} />
             case 'NoteImg':
                 return <UpdateImg note={this.state.note}
-                    handleChange={this.onHandleChange} />
+                onChangeImg={this.onChangeImg} />
+                case 'NoteVideo':
+                    return <UpdateVideo note={this.state.note}
+                    onChangeVideo={this.onChangeVideo} />
             case 'NoteTodos':
                 return <UpdateTodos note={this.state.note}
                     onToggleDoneTodo={this.onToggleDoneTodo}

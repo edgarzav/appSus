@@ -1,20 +1,19 @@
 import eventBusService from '../../../../services/eventBusService.js'
 export default class EmailCompose extends React.Component {
     eventKiller = null;
-    state = { display: false, to: '', cc: '', subject: '', body: '' }
+    state = { display: false, minimize: false, isDraft: false, to: '', cc: '', subject: '', body: '' }
 
     componentDidMount() {
         this.eventKiller = eventBusService.on('toggleModal', (email) => {
             this.setState(prevState => ({ display: !prevState.display, ...email }))
         })
-        
+
     }
 
-    closeCompose = () => this.setState({ display: false })
 
     componentWillUnmount() {
         this.eventKiller && this.eventKiller();
-        this.setState({to: '', cc: '', subject: '', body: ''})
+        this.setState({ to: '', cc: '', subject: '', body: '' })
     }
 
     inputChange = (ev) => {
@@ -24,10 +23,24 @@ export default class EmailCompose extends React.Component {
 
 
     onSaveEmail = () => {
-        const { to, cc, subject, body } = this.state
-        this.props.onSendEmail({ to, cc, subject, body })
+        
+        const { to, cc, subject, body,isDraft } = this.state
+        this.props.onSendEmail({ to, cc, subject, body,isDraft })
+        this.closeCompose()
+    }
+
+    closeCompose = () => this.setState({ display: false })
+
+    onCloseMsg = () => {
+        this.setState(({ isDraft: true }),this.onSaveEmail)
         
         this.closeCompose()
+
+    }
+
+
+    onToggleMinimizeMsg = () => {
+        this.setState({ minimize: !this.state.minimize })
     }
 
 
@@ -35,8 +48,11 @@ export default class EmailCompose extends React.Component {
         const { to, cc, subject, body } = this.state
         // className={`${!this.props.displayBar? 'hide' : ''} side-bar flex diraction-column align-center`}
         // if (!this.state.display) return null;
-        return <div className={`${!this.state.display ? 'hide-compose' : ''} compose-email`}>
+        return <div className={`${!this.state.display ? 'hide-compose' : ''}
+        ${this.state.minimize ? 'minimize-compose' : ''} compose-email`}>
             <h2 className="compose-title">Message</h2>
+            <button onClick={this.onCloseMsg} className="close-msg-btn"></button>
+            <button onClick={this.onToggleMinimizeMsg} className="minimize-msg-btn"></button>
             <form className="flex diraction-column">
                 <input type="text" value={to} placeholder="to" name="to" onChange={this.inputChange} />
                 <input type="text" value={cc} placeholder="cc" name="cc" onChange={this.inputChange} />

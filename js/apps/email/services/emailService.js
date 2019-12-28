@@ -40,8 +40,10 @@ function toggleReadMail(emailId) {
 }
 
 function addEmail(email) {
-    const { to, cc, subject, body } = email
-    const newEmail = new Email(to, cc, subject, body)
+    
+    const { to, cc, subject, body,isDraft } = email
+    const newEmail = new Email(to, cc, subject, body,isDraft)
+console.log(email);
 
     gEmails = [{ ...newEmail }, ...gEmails]
     return Promise.resolve(gEmails)
@@ -88,6 +90,7 @@ gEmails = [{
     sentAt: 1551133930594,
     sent: false,
     inbox: true,
+    isDraft:false,
     starred: false,
     type: 'inbox'
 }, {
@@ -100,6 +103,7 @@ gEmails = [{
     sentAt: 1551133930594,
     sent: false,
     inbox: true,
+    isDraft:false,
     starred: false,
     type: 'inbox'
 }, {
@@ -111,6 +115,7 @@ gEmails = [{
     sentAt: 1551133930594,
     sent: true,
     inbox: true,
+    isDraft:false,
     starred: false,
     type: 'sent'
 }, {
@@ -122,6 +127,7 @@ gEmails = [{
     sentAt: 1551133930594,
     sent: false,
     inbox: true,
+    isDraft:false,
     starred: true,
     type: 'inbox'
 }

@@ -1,6 +1,6 @@
 export default class Email {
     static nextId = 5
-    constructor(to, cc, subject, body) {
+    constructor(to, cc, subject, body, isDraft) {
         this.to = to
         this.cc = cc
         this.id = Email.nextId++
@@ -8,7 +8,16 @@ export default class Email {
         this.body = body
         this.isRead = true
         this.sentAt = Date.now()
+        this.sent = true
+        this.inbox = true
+        this.starred = false
+        this.isDraft = isDraft
         this.type = 'sent'
 
     }
 }
+
+// sent: false,
+// inbox: true,
+// starred: false,
+// type: 'inbox'

@@ -41,7 +41,6 @@ export default class EmailApp extends React.Component {
     }
 
     onSetFilter = (newFilterField) => {
-        console.log(this.state.filterBy);
         
         this.setState(prevstate => ({ filterBy: { ...prevstate.filterBy, ...newFilterField } }), this.loadEmails);
     }
@@ -66,7 +65,6 @@ export default class EmailApp extends React.Component {
     }
 
     toggleClass = () => {
-        // console.log(this.state);
 
         const currentState = this.state.displayBar;
         this.setState({ displayBar: !currentState });
@@ -78,7 +76,6 @@ export default class EmailApp extends React.Component {
     }
 
     onStarEmail = (emailId) =>{
-      console.log('star');
       
         emailService.setEmailStar(emailId).then(emails => {
             this.setState({ emails })

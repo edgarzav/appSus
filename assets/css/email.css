@@ -6,14 +6,6 @@ p {
   margin: 0;
 }
 
-.unBold {
-  font-weight: 100;
-}
-
-.bold {
-  font-weight: 700;
-}
-
 .email-app {
   background-color: rgb(243, 243, 243);
   flex: 1;
@@ -30,20 +22,20 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 10px;
-  /* position: relative;
-  padding: 0 20px;
-  height: 50px;
-  align-items: center; */
   border-bottom: 1px solid rgb(228, 227, 227);
   white-space: nowrap;
   overflow: hidden;
+}
+
+.email-item:hover {
+  background-color: #0079d62a;
 }
 
 .display-toggle-btn {
   position: absolute;
   left: 10px;
   left: 10px;
-  top: 73px;
+  top: 67px;
   font-size: 1.6rem;
   background-color: #f3f3f3;
   border: none;
@@ -51,19 +43,8 @@ p {
   cursor: pointer;
 }
 
-.read-toggle-btn {
-  background-image: url(../img/email/envelope-readed.svg);
-  background-repeat: no-repeat;
-  height: 15px;
-  width: 15px;
-  justify-self: end;
-  text-align: end;
-  /* position: absolute;
-  right: 5px; */
-  margin: 10px;
-  grid-area: 1/2;
-  text-align: end;
-  cursor: pointer;
+.display-toggle-btn:hover {
+  font-size: 1.7rem;
 }
 
 .email-details-container {
@@ -78,8 +59,8 @@ p {
   margin: 20px 0;
 }
 
-.activeSideItem {
-  background-color: rgb(228, 227, 227);
+.active-side-item {
+  background-color: #0079d62a;
 }
 
 .rubbish-bin-btn {
@@ -121,6 +102,10 @@ p {
   cursor: pointer;
 }
 
+.rubbish-bin-btn:hover, .reply-btn:hover, .star-btn:hover {
+  background-size: 21px;
+}
+
 .email-details {
   height: 100vh;
   padding: 10px;
@@ -131,10 +116,17 @@ p {
 .hide-compose {
   transform: translate(0, 500px);
   transition: transform .2s;
-  max-width: 0;
+  max-height: 0;
+}
+
+.minimize-compose {
+  transform: translate(0, -15px);
+  transition: transform .2s;
+  max-height: 22px;
 }
 
 .compose-email {
+  position: relative;
   transition: transform .4s;
   width: 500px;
   display: flex;
@@ -144,6 +136,34 @@ p {
   bottom: 0;
   right: 0;
   border: 1px solid rgba(211, 211, 211, 0.514);
+}
+
+.close-msg-btn {
+  background-image: url(../img/email/close.svg);
+  position: absolute;
+  background-color: grey;
+  background-repeat: no-repeat;
+  right: 10px;
+  width: 15px;
+  height: 15px;
+  background-size: 13px;
+  top: 13px;
+  border: none;
+  cursor: pointer;
+}
+
+.minimize-msg-btn {
+  background-image: url(../img/email/minimize.svg);
+  position: absolute;
+  background-color: grey;
+  background-repeat: no-repeat;
+  right: 33px;
+  width: 15px;
+  height: 15px;
+  background-size: 13px;
+  top: 13px;
+  border: none;
+  cursor: pointer;
 }
 
 .compose-title {
@@ -221,6 +241,63 @@ textarea {
   cursor: pointer;
 }
 
+.side-nav-item:hover {
+  background-color: #0079d62a;
+}
+
+.isReaden {
+  background-image: url(../img/email/envelope-readed.svg);
+  background-repeat: no-repeat;
+  background-size: 15px;
+  height: 17px;
+  width: 17px;
+}
+
+.unReaden {
+  background-image: url(../img/email/envelope-unread.svg);
+  background-repeat: no-repeat;
+  background-size: 15px;
+  height: 17px;
+  width: 17px;
+  /* color: #0078d6; */
+}
+
+.isReaden.preview-subject {
+  color: #000;
+  background: none;
+  width: 270px;
+}
+
+.unReaden.preview-subject {
+  color: #0078d6;
+  background: none;
+  width: 270px;
+}
+
+.unReaden.preview-sender-name {
+  font-weight: 600;
+  background: none;
+}
+
+.isReaden.preview-sender-name {
+  font-weight: 300;
+  background: none;
+}
+
+.read-toggle-btn {
+  height: 17px;
+  width: 17px;
+  justify-self: end;
+  margin: 10px;
+  grid-area: 1/2;
+  text-align: end;
+  cursor: pointer;
+}
+
+.read-toggle-btn:hover {
+  background-size: 16px;
+}
+
 .preview-sender-name {
   margin: 5px 0;
   padding: 0;
@@ -234,7 +311,6 @@ textarea {
   font-size: 1rem;
   white-space: nowrap;
   overflow: hidden;
-  color: #0078d6;
 }
 
 .preview-body {
@@ -252,9 +328,18 @@ textarea {
   min-width: 114px;
   text-align: end;
   grid-area: 2/2;
-  /* position: absolute; */
   right: 17px;
   top: 3px;
+}
+
+.unReaden.preview-time {
+  color: #0078d6;
+  background: none;
+}
+
+.isReaden.preview-time {
+  color: #000;
+  background: none;
 }
 
 .inbox-icon {

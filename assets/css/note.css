@@ -40,10 +40,10 @@
     border-radius: 2px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
-.innerNote iframe{
-    width:100%;
-}
 
+.innerNote iframe {
+    width: 100%;
+}
 
 .note-container:hover .innerNote {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
@@ -60,10 +60,14 @@
 }
 
 .noteAdd-container {
-    max-width: 400px;
+    max-width: 470px;
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 3px 2px -2px rgba(0, 0, 0, 0.2), 0 2px 6px 0 rgba(0, 0, 0, 0.12);
     margin: 50px auto;
     padding: 5px;
+}
+
+.noteAdd-container input[type="text"] {
+    width: 162px;
 }
 
 .note-input-radio {
@@ -84,7 +88,12 @@
 #todos-add {
     display: none;
 }
-#video-add{
+
+#video-add {
+    display: none;
+}
+
+#map-add {
     display: none;
 }
 
@@ -99,7 +108,7 @@
     border-radius: 6px;
     display: inline-block;
     transition: all 0.3s ease 0s;
-    font-size:.9rem;
+    font-size: .9rem;
 }
 
 .add-btn:hover {
@@ -199,17 +208,21 @@
     overflow-y: scroll;
     max-height: 350px;
 }
-.update-todos-li>*:not(:first-child){
-    margin-left:10px;
+
+.update-todos-li>*:not(:first-child) {
+    margin-left: 10px;
 }
-.btn-delete-todo{
+
+.btn-delete-todo {
     cursor: pointer;
 }
-.btn-delete-todo:hover{
-    color:gold;
+
+.btn-delete-todo:hover {
+    color: gold;
 }
-.delete-todo-btn-hack{
-    display:none;
+
+.delete-todo-btn-hack {
+    display: none;
 }
 
 .add-todo-btn {
@@ -220,8 +233,8 @@
     cursor: pointer;
 }
 
-.updateImg-container input{
-    margin:0 auto;
+.updateImg-container input {
+    margin: 0 auto;
 }
 
 .close-btn {
@@ -230,6 +243,13 @@
     right: 7px;
     font-size: 2rem;
     cursor: pointer;
+}
+
+.map {
+    width: 220px;
+    height: 240px;
+    position: relative;
+    overflow: hidden;
 }
 
 @media (max-width: 600px) {
@@ -278,8 +298,8 @@
     .note-details-tools-container>* {
         font-size: 1.5rem;
     }
-    .updateImg-container img{
-        margin-top:60px
+    .updateImg-container img {
+        margin-top: 60px
     }
     .note-tools {
         margin-top: 40px;
@@ -290,10 +310,16 @@
         overflow: hidden;
         height: 100vh;
     }
-    .doneAt{
+    .doneAt {
         display: none;
     }
     .screen {
         display: none;
     }
+
+    .noteAdd-container {
+        max-width: 400px;
+    }
+    
 }
+

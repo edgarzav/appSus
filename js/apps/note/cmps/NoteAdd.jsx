@@ -29,6 +29,9 @@ export default class NoteAdd extends React.Component {
             case 'NoteVideo':
                 placeholder = 'Please enter your url video..'
                 break;
+            case 'NoteMap':
+                placeholder = 'Please enter city to search..'
+                break;
             default:
                 placeholder = 'Write your note down..'
         }
@@ -66,6 +69,10 @@ export default class NoteAdd extends React.Component {
                     className={noteType === 'NoteVideo' ? 'black note-input-radio ' : 'note-input-radio'}>
                     <i className="fas fa-video"></i>
                 </label>
+                <label htmlFor="map-add" name="NoteMap"
+                    className={noteType === 'NoteMap' ? 'black note-input-radio ' : 'note-input-radio'}>
+                    <i className="fas fa-map-marked-alt"></i>
+                </label>
 
                 <input id="txt-add" onChange={this.inputChange}
                     checked={this.state.noteType === 'NoteText'}
@@ -79,6 +86,9 @@ export default class NoteAdd extends React.Component {
                 <input id="video-add" onChange={this.inputChange}
                     checked={this.state.noteType === 'NoteVideo'}
                     type="radio" name="noteType" value="NoteVideo" />
+                <input id="map-add" onChange={this.inputChange}
+                    checked={this.state.noteType === 'NoteMap'}
+                    type="radio" name="noteType" value="NoteMap" />
 
                 <button className="add-btn" onClick={this.onAddNote}>Add</button>
 

@@ -9,8 +9,9 @@ export default class UpdateImg extends React.Component {
     
     render() {
       console.log(this.state.info)
-        return  <div>
-           <img src={this.state.info.url} width="100" height="200" alt=""/>
+        return  <div className="updateImg-container flex diraction-column">
+           <img src={this.state.info.url}  alt=""/>
+           <input   type="txt" defaultValue="x"/>
         </div>
     }
 }

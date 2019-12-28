@@ -35,21 +35,39 @@ export default class PageDetails extends React.Component {
             .then()
 
     }
+    onToggleDoneTodo = (noteId, todoId) => {
+        noteService.onToggleDoneTodo(noteId, todoId)
+            .then(this.loadNote())
+    }
+    onDeleteTodo = (noteId, todoId) => {
+        noteService.deleteTodo(noteId, todoId)
+            .then(this.loadNote())
+    }
+    onAddNewTodo=(note)=>{
+        this.setState({ note })
+    }
+
     getRightCmpToUpdate = () => {
         switch (this.state.note.type) {
             case 'NoteText':
-                return <UpdateText note={this.state.note} handleChange={this.onHandleChange} />
+                return <UpdateText
+                    note={this.state.note}
+                    handleChange={this.onHandleChange} />
             case 'NoteImg':
-                return <UpdateImg note={this.state.note} handleChange={this.onHandleChange} />
+                return <UpdateImg note={this.state.note}
+                    handleChange={this.onHandleChange} />
             case 'NoteTodos':
-                return <UpdateTodos note={this.state.note} handleChange={this.onHandleChange} />
+                return <UpdateTodos note={this.state.note}
+                    onToggleDoneTodo={this.onToggleDoneTodo}
+                    onDeleteTodo={this.onDeleteTodo}
+                    onAddNewTodo={this.onAddNewTodo}
+                    handleChange={this.onHandleChange} />
             default:
                 return //...some default error view
         }
     }
     close = () => {
         this.props.history.push('/note')
-
     }
 
 

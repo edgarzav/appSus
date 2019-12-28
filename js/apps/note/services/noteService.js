@@ -1,85 +1,20 @@
 import utils from '../../../../services/utils.js'
-const gNotes = [
-    {
-        id: '1',
-        type: "NoteText",
-        isPinned: true,
-        info: {
-            txt: "Fullstack Me Baby!"
-        },
-        style: {
-            backgroundColor: "#ffff"
-        }
-    },
-    {
-        id: '2',
-        type: "NoteTodos",
-        isPinned: false,
-        info: {
-            label: "How was it:",
-            todos: [
-                { id: 'eee', txt: "Do that", doneAt: null },
-                { id: 'fff', txt: "Do this", doneAt: 187111111 }
-            ]
-        },
-        style: {
-            backgroundColor: "#ffff"
-        }
-    },
-    {
-        id: '3',
-        type: "NoteTodos",
-        isPinned: false,
-        info: {
-            label: "How was it:",
-            todos: [
-                { id: 'ggg', txt: "Do that", doneAt: null },
-                { id: 'nnn', txt: "Do this", doneAt: 187111111 }
-            ]
-        },
-        style: {
-            backgroundColor: "#ffff"
-        }
-    },
-    {
-        id: '4',
-        type: "NoteTodos",
-        isPinned: false,
-        info: {
-            label: "How was it:",
-            todos: [
-                { id: 'mmm', txt: "Do that", doneAt: null },
-                { id: 'ttt', txt: "Do this", doneAt: 187111111 }
-            ]
-        },
-        style: {
-            backgroundColor: "#ffff"
-        }
-    },
-    {
-        id: '5',
-        type: "NoteImg",
-        isPinned: false,
-        info: {
-            url: "https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg",
-            title: "Me playing Mi"
-        },
-        style: {
-            backgroundColor: "#fffff"
-        }
-    }
+
+let gNotes = utils.loadFromStorage('notes', [])
 
 
-];
 
 const getNotes = () => {
     return Promise.resolve([...gNotes]);
 }
 
 const createInfoByType = (noteType, txtInput) => {
+    let id = utils.getRandomId()
     if (noteType === 'NoteText') return { txt: txtInput }
     else if (noteType === 'NoteImg') return { url: txtInput }
-    else if (noteType === 'NoteTodos') return { todos: [{ txt: txtInput, doneAt: null }] }
+    else if (noteType === 'NoteTodos') return {
+        todos: [{ id, txt: txtInput, doneAt: null }]
+    }
 }
 
 const createNote = (txtInput, noteType) => {
@@ -90,6 +25,7 @@ const createNote = (txtInput, noteType) => {
     let style = { backgroundColor: '#fffff' }
     let note = { id, type, info, isPinned, style }
     gNotes.unshift(note)
+    utils.saveToStorage('notes', [...gNotes])
     //gNotes = [note, ...gNotes]
     return Promise.resolve([...gNotes])
 }
@@ -103,6 +39,7 @@ const updateNote = (noteId, info) => {
     const note = gNotes.find(note => note.id === noteId)
     note.info = info
     if (note.type === 'NoteTodos') upDateTodo(info)
+    utils.saveToStorage('notes', [...gNotes])
     return Promise.resolve(true)
 }
 const upDateTodo = (info) => {
@@ -114,33 +51,44 @@ const upDateTodo = (info) => {
 }
 const onToggleDoneTodo = (noteId, todoId) => {
     const note = gNotes.find(note => note.id === noteId)
-    const todo=note.info.todos.find(todo=>todo.id===todoId)
-    const dateTime= new Date
-    todo.doneAt= todo.doneAt === null? dateTime.getTime():null
+    const todo = note.info.todos.find(todo => todo.id === todoId)
+    const dateTime = new Date
+    todo.doneAt = todo.doneAt === null ? dateTime.getTime() : null
+    utils.saveToStorage('notes', [...gNotes])
     return Promise.resolve(true)
+}
+const deleteTodo = (noteId, todoId) => {
+    let note = gNotes.find(note => note.id === noteId)
+    const todoIndex = note.info.todos.findIndex(todo => todo.id === todoId)
+    note.info.todos.splice(todoIndex,1)
+    utils.saveToStorage('notes', [...gNotes])
+    return Promise.resolve({...note})
 }
 
 const deleteNote = (noteId) => {
     const index = gNotes.findIndex(note => note.id === noteId)
     gNotes.splice(index, 1)
+    utils.saveToStorage('notes', [...gNotes])
     return Promise.resolve([...gNotes])
 }
 
 const pinNote = (noteId) => {
     const index = gNotes.findIndex(note => note.id === noteId)
     gNotes[index].isPinned = !gNotes[index].isPinned
+    utils.saveToStorage('notes', [...gNotes])
     return Promise.resolve([...gNotes])
 }
 
 const changeNoteColor = (color, noteId) => {
     const note = gNotes.find(note => note.id === noteId)
     note.style.backgroundColor = color
+    utils.saveToStorage('notes', [...gNotes])
     return Promise.resolve([...gNotes])
 }
-const isIdExist=(id)=>{
- let note=   gNotes.find((note)=>note.id===id)
- if(!note.id)return Promise.resolve(false)
- else Promise.resolve(true)
+const isIdExist = (id) => {
+    let note = gNotes.find((note) => note.id === id)
+    if (!note.id) return Promise.resolve(false)
+    else Promise.resolve(true)
 }
 
 export default {
@@ -152,5 +100,6 @@ export default {
     pinNote,
     changeNoteColor,
     onToggleDoneTodo,
-    isIdExist
+    isIdExist,
+    deleteTodo
 }

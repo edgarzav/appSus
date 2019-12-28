@@ -164,7 +164,7 @@
     top: 20%;
     display: flex;
     min-height: 130px;
-    width: 400px;
+    width: 450px;
     z-index: 10;
     color: #696969;
     background-color: #fff;
@@ -192,6 +192,18 @@
     overflow-y: scroll;
     max-height: 350px;
 }
+.update-todos-li>*:not(:first-child){
+    margin-left:10px;
+}
+.btn-delete-todo{
+    cursor: pointer;
+}
+.btn-delete-todo:hover{
+    color:gold;
+}
+.delete-todo-btn-hack{
+    display:none;
+}
 
 .add-todo-btn {
     position: absolute;
@@ -199,6 +211,10 @@
     right: 50px;
     font-size: 1.8rem;
     cursor: pointer;
+}
+
+.updateImg-container input{
+    margin:0 auto;
 }
 
 .close-btn {
@@ -263,6 +279,9 @@
         font-size: 1.3rem;
         overflow: hidden;
         height: 100vh;
+    }
+    .doneAt{
+        display: none;
     }
     .screen {
         display: none;

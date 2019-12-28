@@ -2,6 +2,7 @@ import Home from './pages/Home.jsx'
 import EmailApp from './pages/EmailApp.jsx'
 import NoteApp from './pages/NoteApp.jsx'
 import NavBar from './js/apps/cmps/NavBar.jsx'
+import Footer from './js/apps/cmps/Footer.jsx'
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
 const { createBrowserHistory } = History
@@ -19,6 +20,7 @@ class App extends React.Component {
                         <Route component={NoteApp} path="/note" ></Route>
                     </Switch>
                 </Router>
+                <Footer/>
             </main>
         )
     }

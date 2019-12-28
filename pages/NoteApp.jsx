@@ -39,7 +39,7 @@ export default class NoteApp extends React.Component {
     }
 
     onChangeColor = (color, noteId) => {
-        noteService.changeNoteColor(color, noteId)
+          noteService.changeNoteColor(color, noteId)
             .then(notes => {
                 this.setState({ notes })
             })
@@ -51,7 +51,7 @@ export default class NoteApp extends React.Component {
     setScreenMode = (flag) => {
         this.setState(prevState=>({screenMode:!prevState.screenMode}))
     }
-    
+   
 
     render() {
         return (

@@ -27,26 +27,34 @@ export default class EmailDetails extends React.Component {
         this.props.onDeleteEmail(this.state.email.id)
     }
 
-    onReplayEmail= () =>{        
-        this.props.onReplayEmail({...this.state.email})
+    onReplayEmail = () => {
+        this.props.onReplayEmail({ ...this.state.email })
     }
 
-    onStarEmail = () =>{
+    onStarEmail = () => {
         this.props.onStarEmail(this.state.email.id)
     }
 
     render() {
         if (this.state.email) {
-            const { subject, body, sentAt,to } = this.state.email
-            return <div  className="email-details-container flex">
+            const { subject, body, sentAt, to } = this.state.email
+            return <div className="email-details-container flex">
                 <div className="email-details">
-                    <h2>{subject}</h2>
-                    <h2>{to.substring(0, to.indexOf('@'))}{to}</h2>
-                <button className="rubbish-bin-btn" onClick={this.onDeleteEmail}></button>
-                <button className="reply-btn" onClick={this.onReplayEmail}></button>
-                <button className="star-btn" onClick={this.onStarEmail}></button>
-                    <p>{new Date(sentAt).toLocaleDateString()} {new Date(sentAt).toLocaleTimeString()}</p>
-                    <p className="details-body">{body}</p>
+                    <div className="details-title-container">
+                        <h2 className="details-title">{subject}</h2>
+                    </div>
+
+                    <button className="rubbish-bin-btn" onClick={this.onDeleteEmail}></button>
+                    <button className="reply-btn" onClick={this.onReplayEmail}></button>
+                    <button className="star-btn" onClick={this.onStarEmail}></button>
+                    <div className="details-content">
+                        <div className="flex align-baseline">
+                            <h2 className="details-name">{to.substring(0, to.indexOf('@'))} </h2>
+                            <p className="details-address">{` <${to}>`}</p>
+                        </div>
+                        <p className="details-time">{new Date(sentAt).toLocaleDateString()} {new Date(sentAt).toLocaleTimeString()}</p>
+                        <p className="details-body">{body}</p>
+                    </div>
                 </div>
             </div>
         } else return 'No Emails'

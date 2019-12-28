@@ -32,6 +32,10 @@
     justify-content:space-evenly;
 }
 
+.justify-space-between{
+    justify-content: space-between;
+}
+
 .align-flex-start {
     align-items: flex-start;
 }

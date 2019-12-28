@@ -3,7 +3,13 @@ const { Link } = ReactRouterDOM
 export default class EmailPreview extends React.Component {
 
     onSetToggle = () => {
-        this.props.onReadToggle(this.props.email.id)
+        const { id } = this.props.email
+        this.props.onReadToggle(id)
+    }
+
+    onSetActiveItem = () => {
+        const { id } = this.props.email
+        this.props.onSetActiveItem(id)
     }
 
     render() {
@@ -12,7 +18,7 @@ export default class EmailPreview extends React.Component {
         const unReaden = 'unReaden'
         const time = new Date(sentAt)
         return <Link to={`/email/${id}`}>
-            <div className={`email-item flex align-baseline `}>
+            <div onClick={this.onSetActiveItem} className={`email-item flex align-baseline ${this.props.activeItemId === id ? `active-list-item` : ``} `}>
                 <h2 className={`preview-sender-name  ${isRead ? isReaden : unReaden}`}>{to.substring(0, to.indexOf('@'))}</h2>
                 <p className={`preview-subject ${isRead ? isReaden : unReaden}`}>{subject}</p>
                 <p className={`preview-time ${isRead ? isReaden : unReaden}`}>{time.toLocaleTimeString()}</p>

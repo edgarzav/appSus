@@ -13,31 +13,37 @@ export default class NoteAdd extends React.Component {
 
     }
     onAddNote = () => {
-        if(this.state.txtInput==='')return
+        if (this.state.txtInput === '') return
         this.props.handleChange(this.state.txtInput, this.state.noteType)
         this.setState({ txtInput: '', noteType: 'NoteText' })
     }
-    setPlaceholder=()=>{
-        let placeholder=''
-        switch(this.state.noteType) {
+    setPlaceholder = () => {
+        let placeholder = ''
+        switch (this.state.noteType) {
             case 'NoteTodos':
-                placeholder='Write a the first todo..'
-              break;
+                placeholder = 'Write your first todo..'
+                break;
             case 'NoteImg':
-                placeholder='Please enter a url img..'
-              break;
+                placeholder = 'Please enter your url img..'
+                break;
+            case 'NoteVideo':
+                placeholder = 'Please enter your url video..'
+                break;
+            case 'NoteMap':
+                placeholder = 'Please enter city to search..'
+                break;
             default:
-                placeholder='Write your note down..'
-          }
-          return placeholder
+                placeholder = 'Write your note down..'
+        }
+        return placeholder
     }
-    
+
 
 
     render() {
-        const noteType=this.state.noteType
-        const placeholder= this.setPlaceholder()
-        
+        const noteType = this.state.noteType
+        const placeholder = this.setPlaceholder()
+
         return (
             <section className="noteAdd-container flex">
 
@@ -46,18 +52,26 @@ export default class NoteAdd extends React.Component {
                     name="txtInput"
                     className="flex-grow"
                     type="text"
-                    placeholder={placeholder}/>
+                    placeholder={placeholder} />
                 <label htmlFor="txt-add" name="NoteText"
-                    className={noteType ==='NoteText'? 'black note-input-radio ':'note-input-radio'}>
+                    className={noteType === 'NoteText' ? 'black note-input-radio ' : 'note-input-radio'}>
                     <i className="fas fa-font"></i>
                 </label>
                 <label htmlFor="todos-add" name="NoteTodos"
-                    className={noteType ==='NoteTodos'? 'black note-input-radio ':'note-input-radio'}>
+                    className={noteType === 'NoteTodos' ? 'black note-input-radio ' : 'note-input-radio'}>
                     <i className="fas fa-list-ul"></i>
                 </label>
                 <label htmlFor="img-add" name="NoteImg"
-                    className={noteType ==='NoteImg'? 'black note-input-radio ':'note-input-radio'}>
+                    className={noteType === 'NoteImg' ? 'black note-input-radio ' : 'note-input-radio'}>
                     <i className="far fa-image"></i>
+                </label>
+                <label htmlFor="video-add" name="NoteVideo"
+                    className={noteType === 'NoteVideo' ? 'black note-input-radio ' : 'note-input-radio'}>
+                    <i className="fas fa-video"></i>
+                </label>
+                <label htmlFor="map-add" name="NoteMap"
+                    className={noteType === 'NoteMap' ? 'black note-input-radio ' : 'note-input-radio'}>
+                    <i className="fas fa-map-marked-alt"></i>
                 </label>
 
                 <input id="txt-add" onChange={this.inputChange}
@@ -69,6 +83,12 @@ export default class NoteAdd extends React.Component {
                 <input id="todos-add" onChange={this.inputChange}
                     checked={this.state.noteType === 'NoteTodos'}
                     type="radio" name="noteType" value="NoteTodos" />
+                <input id="video-add" onChange={this.inputChange}
+                    checked={this.state.noteType === 'NoteVideo'}
+                    type="radio" name="noteType" value="NoteVideo" />
+                <input id="map-add" onChange={this.inputChange}
+                    checked={this.state.noteType === 'NoteMap'}
+                    type="radio" name="noteType" value="NoteMap" />
 
                 <button className="add-btn" onClick={this.onAddNote}>Add</button>
 

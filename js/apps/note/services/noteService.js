@@ -1,12 +1,28 @@
 import utils from '../../../../services/utils.js'
-
+import axios from '../../../../lib/axios.js'
 let gNotes = utils.loadFromStorage('notes', [])
-
-
+let x = {
+    id: 'sadsads',
+    type: "NoteMap",
+    isPinned: true,
+    info: {
+        txt: "Fullstack Me Baby!"
+    }
+}
 
 const getNotes = () => {
     return Promise.resolve([...gNotes]);
 }
+
+const searchLocation = (address) => {
+    let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyAsAqgAOgYSK5tcvWVgrko0S1a8mJD4vgM`
+ 
+    return axios.get(url).then(location => {
+        let userInputLocation = location.data.results[0].geometry.location
+        return userInputLocation
+    })
+}
+
 
 const createInfoByType = (noteType, txtInput) => {
     let id = utils.getRandomId()
@@ -15,19 +31,41 @@ const createInfoByType = (noteType, txtInput) => {
     else if (noteType === 'NoteTodos') return {
         todos: [{ id, txt: txtInput, doneAt: null }]
     }
+    else if (noteType === 'NoteVideo') {
+        let url = txtInput
+        url = url.replace('watch?v=', 'embed/')
+        console.log(url)
+        return { url }
+    }
 }
 
 const createNote = (txtInput, noteType) => {
     let type = noteType
     let id = utils.getRandomId()
-    let info = createInfoByType(noteType, txtInput)
     let isPinned = false
     let style = { backgroundColor: '#fffff' }
-    let note = { id, type, info, isPinned, style }
-    gNotes.unshift(note)
-    utils.saveToStorage('notes', [...gNotes])
+    if (noteType === 'NoteMap') {
+        return    searchLocation(txtInput)
+        .then(location=>{
+            let info ={
+                address:txtInput,
+                lat:location.lat,
+                lng:location.lng
+            }
+            let note = { id, type, info, isPinned, style }
+            gNotes.unshift(note)
+            utils.saveToStorage('notes', [...gNotes])
+        Promise.resolve([...gNotes])
+        })
+    } else {
+        let info = createInfoByType(noteType, txtInput)
+        let note = { id, type, info, isPinned, style }
+        gNotes.unshift(note)
+        utils.saveToStorage('notes', [...gNotes])
+        return Promise.resolve([...gNotes])
+    }
+
     //gNotes = [note, ...gNotes]
-    return Promise.resolve([...gNotes])
 }
 
 const getNoteById = (noteId) => {
@@ -60,9 +98,28 @@ const onToggleDoneTodo = (noteId, todoId) => {
 const deleteTodo = (noteId, todoId) => {
     let note = gNotes.find(note => note.id === noteId)
     const todoIndex = note.info.todos.findIndex(todo => todo.id === todoId)
-    note.info.todos.splice(todoIndex,1)
+    note.info.todos.splice(todoIndex, 1)
     utils.saveToStorage('notes', [...gNotes])
-    return Promise.resolve({...note})
+    return Promise.resolve({ ...note })
+}
+
+const changeNoteUrl = (noteId, newUrl) => {
+    gNotes = gNotes.map((noteToFind) => {
+        if (noteToFind.id === noteId) {
+            let noteToChange = { ...noteToFind }
+            if (noteToFind.type === 'NoteVideo') {
+                noteToChange.info.url = newUrl.replace('watch?v=', 'embed/')
+            }
+            else {
+                noteToChange.info.url = newUrl
+            }
+            return noteToChange
+        } else {
+            return noteToFind
+        }
+    })
+    utils.saveToStorage('notes', [...gNotes])
+    return Promise.resolve(true)
 }
 
 const deleteNote = (noteId) => {
@@ -91,6 +148,8 @@ const isIdExist = (id) => {
     else Promise.resolve(true)
 }
 
+
+
 export default {
     getNotes,
     createNote,
@@ -101,5 +160,6 @@ export default {
     changeNoteColor,
     onToggleDoneTodo,
     isIdExist,
-    deleteTodo
+    deleteTodo,
+    changeNoteUrl
 }

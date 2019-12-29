@@ -29,16 +29,12 @@ export default class EmailApp extends React.Component {
     }
 
     checkWindowWidth = () => {
-        console.log(window.innerWidth);
         if (window.innerWidth < 750) {
-            this.setState({ isMobile: true })
+            this.setState({ isMobile: true, displayBar: false })
         }
-        window.addEventListener('resize', () => {
-            console.log('resize', window.innerWidth < 750);
 
-            this.setState({
-                isMobile: window.innerWidth < 750
-            });
+        window.addEventListener('resize', () => {
+            this.setState({ isMobile: window.innerWidth < 750 });
         }, false);
     }
 
@@ -52,8 +48,6 @@ export default class EmailApp extends React.Component {
     showFirstEmail = () => {
         let { id } = this.state.emails[0]
         id = String(id)
-        console.log(history);
-        console.log(id);
 
         history.push(`#/email/${id}/`);
     }
@@ -97,7 +91,6 @@ export default class EmailApp extends React.Component {
         const currentState = this.state.displayBar;
         this.setState({ displayBar: !currentState });
     }
-    // onClick={this.props.toggleClass} 
 
     onSetEmailType = (type) => {
         this.setState(({ filterBy: { ...type } }));
@@ -115,34 +108,31 @@ export default class EmailApp extends React.Component {
     }
 
     onToggleMobileDetails = () => {
-        console.log('isMobile? ', this.state.isMobile);
-
         this.setState({ isShowDetails: !this.state.isShowDetails })
-        console.log('app');
-
-        console.log(this.state.isShowDetails);
     }
 
-
+    onBackToList = () => {
+        this.props.history.push('/email')
+        this.setState({ isShowDetails: false })
+    }
     render() {
 
         return <div className="email-app flex container">
             <button onClick={this.toggleClass} className="display-toggle-btn">☰</button>
-            <button  className={`details-back-btn`}>back</button>
+            <button onClick={this.onBackToList} className={`${this.state.isShowDetails ? 'show-details-back' : ''} details-back-btn`}>back</button>
             <EmailSideBar onSetEmailType={this.onSetEmailType} displayBar={this.state.displayBar} toggleClass={this.toggleClass}
                 onSendEmail={this.onSendEmail} onSetFilter={this.onSetFilter}
                 filterBy={this.state.filterBy} onCompose={this.onCompose} />
             <div className="main-content flex">
 
-                <EmailList isShowDetails={this.state.isShowDetails}  isMobile={this.state.isMobile} onShowMobileDetails={this.onToggleMobileDetails} onSortBy={this.onSortBy} emailType={this.state.filterBy.type} emails={this.state.emails} onReadToggle={this.onReadToggle} />
+                <EmailList isShowDetails={this.state.isShowDetails} isMobile={this.state.isMobile} onShowMobileDetails={this.onToggleMobileDetails} onSortBy={this.onSortBy} emailType={this.state.filterBy.type} emails={this.state.emails} onReadToggle={this.onReadToggle} />
 
                 <Router history={history}>
                     <Switch>
                         <Route render={(props) => <EmailDetails {...props}
-                            onDeleteEmail={this.onDeleteEmail} isShowDetails={this.state.isShowDetails}  onStarEmail={this.onStarEmail} onReplayEmail={this.onReplayEmail} />}
+                            onDeleteEmail={this.onDeleteEmail} isShowDetails={this.state.isShowDetails} onStarEmail={this.onStarEmail} onReplayEmail={this.onReplayEmail} />}
                             path="/email/:id" exact></Route>
-                            <Route component={EmailCompose} exact path="/email/compose" ></Route>
-
+                        <Route component={EmailCompose} exact path="/email/compose" ></Route>
                     </Switch>
                 </Router>
             </div>

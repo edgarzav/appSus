@@ -15,7 +15,6 @@ export default class EmailSortBy extends React.Component {
             <div className="toggle-group">
                 <input onChange={this.onSortBy} type="checkbox" name="on-off-switch" id="on-off-switch" tabIndex="1"></input>
                 <label htmlFor="on-off-switch">
-                    {/* <span className="aural">Show:</span> */}
                 </label>
                 <div className="onoffswitch pull-right" aria-hidden="true">
                     <div className="onoffswitch-label">

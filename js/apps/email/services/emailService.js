@@ -42,8 +42,10 @@ function toggleReadMail(emailId) {
 }
 
 function addEmail(email) {
-    const { to, cc, subject, body, isDraft } = email
-    const newEmail = new Email(to, cc, subject, body, isDraft)
+    console.log(email);
+    
+    const { to, cc, subject, body, isDraft,data,type } = email
+    const newEmail = new Email(to, cc, subject, body, isDraft,data,type)
 
     gEmails = [{ ...newEmail }, ...gEmails]
     return Promise.resolve(gEmails)

@@ -6,6 +6,7 @@ export default function NavBar(props) {
             <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/' exact>Home</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/email'>Email</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/note'>Note</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/bookapp'>Book Shop</NavLink></li>
         </ul>
         <Filter handleChange={props.handleChange} inputFilter={props.inputFilter} />
     </nav>

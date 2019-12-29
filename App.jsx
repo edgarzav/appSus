@@ -1,10 +1,10 @@
 import Home from './pages/Home.jsx'
 import EmailApp from './pages/EmailApp.jsx'
 import NoteApp from './pages/NoteApp.jsx'
+import BookApp from './pages/BookApp.jsx'
 import NavBar from './js/apps/cmps/NavBar.jsx'
 import Footer from './js/apps/cmps/Footer.jsx'
 import UserMsg from './js/apps/cmps/UserMsg.jsx'
-// import EmailCompose from './js/apps/email/cmps/EmailCompose.jsx'
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
 const { createBrowserHistory } = History
@@ -23,18 +23,21 @@ class App extends React.Component {
                     <NavBar handleChange={this.handleChange} inputFilter={this.state.inputFilter} />
                     <Switch>
                         <Route component={Home} path="/" exact></Route>
-                        <Route path="/email" render={(props) => {return (        
-                                    <EmailApp  {...props} 
+                        <Route path="/email" render={(props) => {
+                            return (
+                                <EmailApp  {...props}
                                     inputFilter={this.state.inputFilter}
-                                    />
-                                )}} />
-                        <Route path="/note" render={(props) => {return (        
-                                    <NoteApp  {...props} 
+                                />
+                            )
+                        }} />
+                        <Route path="/note" render={(props) => {
+                            return (
+                                <NoteApp  {...props}
                                     inputFilter={this.state.inputFilter}
-                                    />
-                                )}} />
-                                <Route component={BookApp} path="/bookapp" exact></Route>
-
+                                />
+                            )
+                        }} />
+                        <Route component={BookApp} path="/bookapp" exact></Route>
                     </Switch>
                 </Router>
                 <Footer />

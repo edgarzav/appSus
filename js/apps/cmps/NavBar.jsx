@@ -1,6 +1,6 @@
 const { NavLink } = ReactRouterDOM
 export default function NavBar(props) {
-    return <nav>
+    return <nav className="nav-bar-container flex">
         <ul className="nav-bar flex">
             <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/' exact>Home</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/email'>Email</NavLink></li>

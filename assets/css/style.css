@@ -11,22 +11,37 @@ main {
     min-height: 100vh;
 }
 
+.nav-bar-container {
+    background-color: #66cdaa;
+}
+
 .nav-bar {
-    background-color: #0078d6;
+    font-size: 1.5rem;
     padding: 20px 0;
     margin: 0;
     color: #fff;
 }
+.nav-bar>*{
+    margin-left:40px;
+}
+.nav-bar>*:hover{
+    color:black;
+}
+.active{
+    color:black;
+}
 
 .footer {
+    bottom: 0;
     height: 90px;
-    background-color: #0078d6;
+    background-color: #66cdaa;
     color: #fff;
 }
 
 .home-container {
     background-color: #000;
 }
+
 video {
     object-fit: cover;
     width: 100%;
@@ -49,8 +64,6 @@ video {
     display: inline-block;
     animation: animate 1s linear forwards;
 }
-
-
 
 .home-title span:nth-child(1) {
     animation-delay: 1s;

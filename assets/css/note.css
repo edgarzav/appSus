@@ -35,7 +35,6 @@
 .innerNote {
     max-width: 240px;
     padding: 10px 10px 35px 10px;
-    /* background-color: #fff; */
     min-height: 4em;
     border-radius: 2px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
@@ -44,18 +43,6 @@
 .innerNote iframe {
     width: 100%;
 }
-
- .innerNote-map{
-    position: relative;
-    z-index:-1;
-} 
-
-/* .innerNote-map>*{
-    width: 220px !important;
-    height: 240px !important;
-    z-index:-1;
-} */
-
 
 
 .note-container:hover .innerNote {

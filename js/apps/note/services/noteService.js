@@ -1,19 +1,9 @@
 import utils from '../../../../services/utils.js'
-import axios from '../../../../lib/axios.js'
 import Note from './note.js'
 let gNotes = utils.loadFromStorage('notes', [])
 
 const getNotes = () => {
     return Promise.resolve([...gNotes]);
-}
-
-const searchLocation = (address) => {
-    let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyAsAqgAOgYSK5tcvWVgrko0S1a8mJD4vgM`
- 
-    return axios.get(url).then(location => {
-        let userInputLocation = location.data.results[0].geometry.location
-        return userInputLocation
-    })
 }
 
 
@@ -30,30 +20,18 @@ const createInfoByType = (noteType, txtInput) => {
         console.log(url)
         return { url }
     }
+    else if (noteType === 'NoteMap') return { address: txtInput }
 }
 
 const createNote = (txtInput, noteType) => {
-    if (noteType === 'NoteMap') {
-        return    searchLocation(txtInput)
-        .then(location=>{
-            let info ={
-                address:txtInput,
-                lat:location.lat,
-                lng:location.lng
-            }
-            let note =new Note(noteType,false,{ backgroundColor: '#fffff' },info)
-            gNotes = [note, ...gNotes]
-            utils.saveToStorage('notes', [...gNotes])
-        Promise.resolve([...gNotes])
-        })
-    } else {
         let info = createInfoByType(noteType, txtInput)
         let note =new Note(noteType,false,{ backgroundColor: '#fffff' },info)
         gNotes = [note, ...gNotes]
         utils.saveToStorage('notes', [...gNotes])
         return Promise.resolve([...gNotes])
-    }
+
 }
+
 
 const getNoteById = (noteId) => {
     const note = gNotes.find(note => note.id === noteId)

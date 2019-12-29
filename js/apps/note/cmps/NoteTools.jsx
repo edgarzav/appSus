@@ -1,7 +1,25 @@
 import ColorPlate from './ColorPlate.jsx'
 const { Link } = ReactRouterDOM
 export default class NoteTools extends React.Component {
-
+    state={dataToSend:''}
+    componentDidMount(){
+        this.setDataToString()
+    }
+    setDataToString=()=>{
+        let noteData=this.props.note.info
+        let key =Object.keys(noteData)[0]
+        let noteDataStr=''
+        console.log(noteData[key])
+        if(this.props.note.type==='NoteTodos'){
+            noteDataStr=noteData[key].map(todo=>{
+                return `${todo.txt}`
+            })
+            noteDataStr=noteDataStr.join()
+        }else{
+            noteDataStr=noteData[key]
+        }
+        this.setState({dataToSend:noteDataStr})
+    }
 
     onDelete = (event) => {
         event.stopPropagation();
@@ -32,7 +50,7 @@ export default class NoteTools extends React.Component {
                     </div>
                 </div>
 
-                <Link to={`/email/?${this.props.note.id}`}>
+                <Link to={`/email/?content=${this.state.dataToSend}&type=${this.props.note.type}`}>
                     <i className="far fa-envelope"></i>
                 </Link>
 

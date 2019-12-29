@@ -1,12 +1,12 @@
-import storageService from './storageService.js'
+// import storageService from './storageService.js'
 import Book from './Book.js'
 export default {
     getBooks, createBooks, getBookById,
     addReview, deleteReview, addGoogleBook, getNextBook, getPrevBook
 }
 
-let gBooks = storageService.loadFromStorage('books') || createBooks();
-
+let gBooks = createBooks();
+// storageService.loadFromStorage('books') ||
 
 
 function getBookById(bookId) {
@@ -70,6 +70,8 @@ function deleteReview(book, review) {
 
 
 function getBooks(filterBy) {
+    console.log('l');
+    
     const books = (!filterBy) ? [...gBooks]
         : gBooks.filter(book => book.title.includes(filterBy.title)
             && book.listPrice.amount < filterBy.price);

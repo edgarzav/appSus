@@ -4,7 +4,6 @@ import EmailSideBar from '../js/apps/email/cmps/EmailSideBar.jsx'
 import eventBusService from '../services/eventBusService.js'
 import EmailDetails from '../js/apps/email/pages/EmailDetails.jsx'
 import EmailCompose from '../js/apps/email/cmps/EmailCompose.jsx'
-import noteService from '../js/apps/note/services/noteService.js'
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
 const { createBrowserHistory } = History
@@ -33,15 +32,16 @@ export default class EmailApp extends React.Component {
     onSendNote = () => {
         const { search } = this.props.location
         if (search) {
-            this.onCompose()
+            const note = {
+                data: search.substring(search.indexOf('=') + 1, search.indexOf('&')),
+                type: search.substring(search.lastIndexOf('=') + 1, search.lengthindexOf)
+            }
+            eventBusService.emit('toggleModal', note);
+            console.log('lll');
+            
         }
-        // console.log(this.props.location);
-        
-       noteService.getNoteById(search.substring(1, search.length)).then(note=>{
-    //   console.log(note);
-          
-        //  eventBusService.emit('toggleModalMessage', note);
-       })
+
+
     }
 
     checkWindowWidth = () => {
@@ -145,7 +145,11 @@ export default class EmailApp extends React.Component {
                 filterBy={this.state.filterBy} onCompose={this.onCompose} />
             <div className="main-content flex">
 
-                <EmailList isShowDetails={this.state.isShowDetails} isMobile={this.state.isMobile} onShowMobileDetails={this.onToggleMobileDetails} onSortBy={this.onSortBy} emailType={this.state.filterBy.type} emails={this.state.emails} onReadToggle={this.onReadToggle} />
+                <EmailList isShowDetails={this.state.isShowDetails}
+                    isMobile={this.state.isMobile}
+                    onShowMobileDetails={this.onToggleMobileDetails}
+                    onSortBy={this.onSortBy} emailType={this.state.filterBy.type}
+                    emails={this.state.emails} onReadToggle={this.onReadToggle} />
 
                 <Router history={history}>
                     <Switch>

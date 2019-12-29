@@ -1,28 +1,37 @@
 import eventBusService from '../../../../services/eventBusService.js'
+import EmailPreviewNote from './EmailPreviewNote.jsx';
 export default class EmailCompose extends React.Component {
     eventKiller = null;
-    state = { display: false, minimize: false, isDraft: false, to: '', cc: '', subject: '', body: '' }
+    state = {
+        display: false,
+        minimize: false,
+        isDraft: false,
+        to: '',
+        cc: '',
+        subject: '',
+        body: '',
+        data: '',
+        type: '',
+    }
 
     componentDidMount() {
         this.eventKiller = eventBusService.on('toggleModal', (email) => {
             this.setState(prevState => ({ display: !prevState.display, ...email }))
-            if(email.type === "NoteTodos")
-            console.log(email.info.todos);
         })
     }
-    
-    
+
+
     componentWillUnmount() {
         this.eventKiller && this.eventKiller();
         this.setState({ to: '', cc: '', subject: '', body: '' })
     }
-    
+
     inputChange = (ev) => {
         let fieldName = ev.target.name
         this.setState({ [fieldName]: ev.target.value })
     }
-    
-    
+
+
     onSaveEmail = () => {
         const { to, cc, subject, body, isDraft } = this.state
         this.props.onSendEmail({ to, cc, subject, body, isDraft })
@@ -48,7 +57,7 @@ export default class EmailCompose extends React.Component {
 
 
     render() {
-        const { to, cc, subject, body } = this.state
+        const { to, cc, subject, body, type, data } = this.state
         return <div className={`${!this.state.display ? 'hide-compose' : ''}
         ${this.state.minimize ? 'minimize-compose' : ''} compose-email`}>
             <h2 className="compose-title">Message</h2>
@@ -58,7 +67,9 @@ export default class EmailCompose extends React.Component {
                 <input type="text" value={to} placeholder="to" name="to" onChange={this.inputChange} />
                 <input type="text" value={cc} placeholder="cc" name="cc" onChange={this.inputChange} />
                 <input type="text" value={subject} placeholder="subject" name="subject" onChange={this.inputChange} />
-                <textarea name="" value={body} id="" cols="30" rows="10" name="body" onChange={this.inputChange}></textarea>
+                {type ? <EmailPreviewNote note={{ type: type, data: data }} /> :
+                    <textarea name="" value={body} id="" cols="30" rows="10" name="body" onChange={this.inputChange}></textarea>
+                }
             </form>
             <button className="compose-btn" onClick={this.onSaveEmail}>Send</button>
         </div>

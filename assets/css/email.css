@@ -59,11 +59,15 @@ p {
   background-color: #0079d62a;
 }
 
+.note-preview{
+  min-height: 230px;
+}
+
 .display-toggle-btn {
   position: absolute;
   left: 10px;
   left: 10px;
-  top: 67px;
+  top: 77px;
   font-size: 1.6rem;
   background-color: #f3f3f3;
   border: none;

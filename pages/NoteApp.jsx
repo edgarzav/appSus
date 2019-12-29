@@ -13,8 +13,8 @@ export default class NoteApp extends React.Component {
         this.loadNotes();
     }
     componentDidUpdate(props) {
-        if(props.inputFilter !==this.props.inputFilter){
-            this.loadNotes(this.props.inputFilter); 
+        if(props.inputFilter.subject !==this.props.inputFilter.subject){
+            this.loadNotes(this.props.inputFilter.subject); 
         }
       }
 

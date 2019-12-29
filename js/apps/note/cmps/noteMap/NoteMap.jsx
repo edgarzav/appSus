@@ -7,9 +7,6 @@ class NoteMap extends React.Component {
 
             style={{ backgroundColor: this.props.note.style.backgroundColor }}
             className="innerNote innerNote-map">
-            {/* <div id={this.props.note.id}
-                className="map"
-            ></div> */}
              <iframe width="220" height="300" id="gmap_canvas" src={`https://maps.google.com/maps?q=${this.props.note.info.address}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
              frameBorder="0"
               scrolling="no"

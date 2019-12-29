@@ -101,6 +101,10 @@ video {
 
 .filter{
     margin:0 auto;
+    border: none;
+    height: 40px;
+    width: 290px;
+    padding-left: 10px;
 }
 
 @keyframes animate {

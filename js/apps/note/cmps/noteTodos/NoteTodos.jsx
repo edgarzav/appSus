@@ -1,9 +1,5 @@
-import NoteTools from '../NoteTools.jsx'
+
 export default class NoteTodos extends React.Component {
-
-    componentDidMount() {
-
-    }
     onToggleDoneTodo=(event)=>{
         this.props.onToggleDoneTodo(this.props.note.id,event.target.id)
         event.preventDefault();

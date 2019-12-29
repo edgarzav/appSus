@@ -2,10 +2,6 @@ import utils from '../../../../services/utils.js'
 import Note from './note.js'
 let gNotes = utils.loadFromStorage('notes', [])
 
-// const getNotes = (inputFilter) => {
-//     console.log(inputFilter)
-//     return Promise.resolve([...gNotes]);
-// }
 
 const getNotes=(filterBy)=>{
     if (filterBy) return Promise.resolve(gNotes.filter(note=>{

@@ -19,7 +19,7 @@ export default function NotePreview(props) {
             return <NoteMap {...props} />
 
         default:
-            return //...some default error view
+            return 
     }
 }
 

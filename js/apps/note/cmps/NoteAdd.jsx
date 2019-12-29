@@ -6,7 +6,6 @@ export default class NoteAdd extends React.Component {
 
     }
     inputChange = (ev) => {
-        // ev.preventDefault();
         const field = ev.target.name
         const value = ev.target.value
         this.setState({ [field]: value })

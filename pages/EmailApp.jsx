@@ -65,7 +65,7 @@ export default class EmailApp extends React.Component {
     }
 
     showFirstEmail = () => {
-        let { id } = this.state.emails[0]
+        let { id } = this.state.emails[0] || ''
         id = String(id)
 
         history.push(`#/email/${id}/`);

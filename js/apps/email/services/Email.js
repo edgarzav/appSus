@@ -1,5 +1,5 @@
 export default class Email {
-    static nextId = 5
+    static nextId = 11
     constructor(to, cc, subject, body, isDraft, data, type) {
         this.to = to
         this.cc = cc

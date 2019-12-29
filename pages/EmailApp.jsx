@@ -29,6 +29,12 @@ export default class EmailApp extends React.Component {
         this.checkWindowWidth()
     }
 
+    componentDidUpdate(props) {
+        if (props.inputFilter != this.props.inputFilter) {
+            this.onSetFilter(this.props.inputFilter)
+        }
+    }
+
     onSendNote = () => {
         const { search } = this.props.location
         if (search) {
@@ -75,7 +81,12 @@ export default class EmailApp extends React.Component {
     }
 
     onSetFilter = (newFilterField) => {
-        this.setState(prevstate => ({ filterBy: { ...prevstate.filterBy, ...newFilterField } }), this.loadEmails);
+        this.setState(prevstate => ({
+            filterBy: {
+                ...prevstate.filterBy,
+                ...newFilterField
+            }
+        }), this.loadEmails);
     }
 
     onDeleteEmail = (emailId) => {
@@ -92,8 +103,6 @@ export default class EmailApp extends React.Component {
         emailService.addEmail(email).then(emails => {
             this.setState({ emails })
             eventBusService.emit('toggleModalMessage', 'Email was sended');
-
-
         })
     }
 

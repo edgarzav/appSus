@@ -7,33 +7,36 @@ export default class EmailCompose extends React.Component {
         this.eventKiller = eventBusService.on('toggleModal', (email) => {
             this.setState(prevState => ({ display: !prevState.display, ...email }))
         })
+console.log(this.props);
 
+        
     }
-
-
+    
+    
     componentWillUnmount() {
         this.eventKiller && this.eventKiller();
         this.setState({ to: '', cc: '', subject: '', body: '' })
     }
-
+    
     inputChange = (ev) => {
         let fieldName = ev.target.name
         this.setState({ [fieldName]: ev.target.value })
     }
-
-
+    
+    
     onSaveEmail = () => {
-        
-        const { to, cc, subject, body,isDraft } = this.state
-        this.props.onSendEmail({ to, cc, subject, body,isDraft })
+        const { to, cc, subject, body, isDraft } = this.state
+        this.props.onSendEmail({ to, cc, subject, body, isDraft })
+        this.setState({ to: '', cc: '', subject: '', body: '' })
         this.closeCompose()
     }
 
     closeCompose = () => this.setState({ display: false })
 
     onCloseMsg = () => {
-        this.setState(({ isDraft: true }),this.onSaveEmail)
-        
+        if (this.state.to) {
+            this.setState(({ isDraft: true }), this.onSaveEmail)
+        }
         this.closeCompose()
 
     }

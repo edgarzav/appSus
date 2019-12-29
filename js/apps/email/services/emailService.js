@@ -10,7 +10,6 @@ export default {
 }
 
 let gEmails;
-// let sortBy = 'subject'
 
 
 function getEmails(filterBy, sortBy) {
@@ -20,10 +19,7 @@ function getEmails(filterBy, sortBy) {
             return email.subject.toLowerCase().includes(filterBy.subject)
                 && (filterBy.isRead === '' || email.isRead == filterBy.isRead)
         })
-        console.log(emails);
-
     emails = sortEmails([...emails], sortBy)
-    console.log(emails);
 
     return Promise.resolve(emails)
 }
@@ -68,27 +64,8 @@ function setEmailStar(emailId) {
     return Promise.resolve(gEmails)
 }
 
-// function setSortBy(sortBy) {
-//     sortBy = sortBy;
-
-//     return Promise.resolve(sortBy)
-// }
-
-// cars.sort(function (a, b) {
-//     return a.speed - b.speed;
-// })
 
 function sortEmails(emails, sortBy) {
-    console.log('--');
-    console.log(sortBy);
-
-
-
-    // var sortedBooks = books.sort(function (book1, book2) {
-    //     return book1[gSortBy] > book2[gSortBy] ? 1 :
-    //         (book1[gSortBy] < book2[gSortBy] ? -1 : 0)
-    // });
-
     return emails.sort((email1, email2) => {
         return email1[sortBy] > email2[sortBy] ? 1 :
             (email1[sortBy] < email2[sortBy] ? -1 : 0)
@@ -99,7 +76,7 @@ gEmails = [{
     id: 1,
     to: 'momomo@gmail.com',
     subject: 'cassap1 rwnk wrvw wvwevwev?',
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+    body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius consectetur sequi maiores, voluptates numquam totam, dolor libero incidunt tenetur natus aperiam ea dolorem ab! Recusandae, maxime incidunt, accusamus iste maiores, dolore mollitia voluptatem aspernatur deleniti doloribus assumenda autem fugit vitae.',
     isRead: false,
     sentAt: 1551133930597,
     sent: false,
@@ -112,7 +89,7 @@ gEmails = [{
     to: 'momo@gmail.com',
     subject: 'baaorem ipsum dolor sit amet consectetur'
     ,
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
+    body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius consectetur sequi maiores, voluptates numquam totam, dolor libero incidunt tenetur natus aperiam ea dolorem ab! Recusandae, maxime incidunt, accusamus iste maiores, dolore mollitia voluptatem aspernatur deleniti doloribus assumenda autem fugit vitae.',
     isRead: true,
     sentAt: 1551113930594,
     sent: false,
@@ -124,7 +101,7 @@ gEmails = [{
     id: 3,
     to: 'koko@gmail.com',
     subject: 'affello, hello hello hello',
-    body: 'dddorem ipsum dolor sit amet consectetur adipisicing elit. ',
+    body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius consectetur sequi maiores, voluptates numquam totam, dolor libero incidunt tenetur natus aperiam ea dolorem ab! Recusandae, maxime incidunt, accusamus iste maiores, dolore mollitia voluptatem aspernatur deleniti doloribus assumenda autem fugit vitae.',
     isRead: true,
     sentAt: 1551193930694,
     sent: true,
@@ -136,7 +113,7 @@ gEmails = [{
     id: 4,
     to: 'muki@gmail.com',
     subject: 'dssap4?',
-    body: 'dccorem ipsum dolor sit amet consectetur adipisicing elit. ',
+    body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius consectetur sequi maiores, voluptates numquam totam, dolor libero incidunt tenetur natus aperiam ea dolorem ab! Recusandae, maxime incidunt, accusamus iste maiores, dolore mollitia voluptatem aspernatur deleniti doloribus assumenda autem fugit vitae.',
     isRead: false,
     sentAt: 1551173920594,
     sent: false,

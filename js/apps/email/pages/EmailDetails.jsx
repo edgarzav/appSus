@@ -38,16 +38,16 @@ export default class EmailDetails extends React.Component {
     render() {
         if (this.state.email) {
             const { subject, body, sentAt, to } = this.state.email
-            return <div className="email-details-container flex">
+            return <div className={`${this.props.isShowDetails ? `show-mobile-details` : 'hide-mobile-details'} email-details-container flex`}>
                 <div className="email-details">
                     <div className="details-title-container">
                         <h2 className="details-title">{subject}</h2>
                     </div>
-
-                    <button className="rubbish-bin-btn" onClick={this.onDeleteEmail}></button>
-                    <button className="reply-btn" onClick={this.onReplayEmail}></button>
-                    <button className="star-btn" onClick={this.onStarEmail}></button>
                     <div className="details-content">
+
+                        <button className="rubbish-bin-btn" onClick={this.onDeleteEmail}></button>
+                        <button className="reply-btn" onClick={this.onReplayEmail}></button>
+                        <button className="star-btn" onClick={this.onStarEmail}></button>
                         <div className="flex align-baseline">
                             <h2 className="details-name">{to.substring(0, to.indexOf('@'))} </h2>
                             <p className="details-address">{` <${to}>`}</p>

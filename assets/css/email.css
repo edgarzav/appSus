@@ -25,6 +25,7 @@ p {
 
 .email-app {
   opacity: 1;
+  min-height: calc(100vh - 58px);
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
@@ -70,6 +71,13 @@ p {
   cursor: pointer;
 }
 
+.details-back-btn {
+  visibility: hidden;
+  position: absolute;
+  right: 10px;
+  top: 71px;
+}
+
 .display-toggle-btn:hover {
   font-size: 1.7rem;
 }
@@ -81,7 +89,13 @@ p {
   background-color: #fff;
 }
 
+.main-content {
+  /* flex-direction: column; */
+  width: 100%;
+}
+
 .details-content {
+  position: relative;
   padding: 0 10px;
 }
 
@@ -105,7 +119,7 @@ p {
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
   animation-duration: .4s;
-  margin: 10px;
+  margin-left: 10px;
   margin-top: 50px;
   position: relative;
   flex: 1;
@@ -130,7 +144,7 @@ p {
   background-size: 20px;
   position: absolute;
   right: 45px;
-  top: 85px;
+  top: 15px;
   cursor: pointer;
 }
 
@@ -143,7 +157,7 @@ p {
   background-size: 20px;
   position: absolute;
   right: 10px;
-  top: 85px;
+  top: 15px;
   cursor: pointer;
 }
 
@@ -156,7 +170,7 @@ p {
   background-size: 20px;
   position: absolute;
   right: 80px;
-  top: 85px;
+  top: 15px;
   cursor: pointer;
 }
 
@@ -195,6 +209,7 @@ p {
   position: fixed;
   bottom: 0;
   right: 0;
+  background-color: #fff;
   border: 1px solid rgba(211, 211, 211, 0.514);
 }
 
@@ -269,6 +284,7 @@ textarea {
 .side-bar {
   max-width: 165px;
   margin-top: 50px;
+  padding-right: 10px;
   transition: max-width 0.4s;
 }
 
@@ -626,13 +642,14 @@ textarea {
   .toggle-group {
     left: 208px;
   }
-
-  .details-address {
-    margin-top: 80px;
-  }
-
-  .preview-body{
+  .preview-body {
     display: none;
+  }
+  /* .reply-btn, .star-btn, .rubbish-bin-btn {
+    top: 80px;
+  } */
+  .details-address {
+    margin-top: 50px;
   }
   /* .main-content{
   flex-direction: column;
@@ -641,4 +658,39 @@ textarea {
 .email-details-container{
   margin-top: 5px 0;
 } */
+}
+
+@media (max-width: 815px) {
+  .hide-mobile-details {
+    max-width: 0;
+  }
+  .show-mobile-details {
+    width: 100%;
+  }
+  .hide-list {
+    display: none;
+  }
+  .side-bar {
+    position: absolute;
+    background-color: rgb(243, 243, 243);
+    height: 100vh;
+  }
+  .compose-email {
+    width: 100%;
+  }
+  .email-list {
+    width: 100%;
+  }
+  .toggle-group {
+    left: 300px;
+  }
+  .sort-by-container {
+    width: 100%;
+  }
+  .preview-time {
+    min-width: 105px;
+  }
+  .details-back-btn {
+    visibility: visible;
+  }
 }

@@ -3,6 +3,7 @@ import EmailApp from './pages/EmailApp.jsx'
 import NoteApp from './pages/NoteApp.jsx'
 import NavBar from './js/apps/cmps/NavBar.jsx'
 import Footer from './js/apps/cmps/Footer.jsx'
+// import EmailCompose from './js/apps/email/cmps/EmailCompose.jsx'
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
 const { createBrowserHistory } = History

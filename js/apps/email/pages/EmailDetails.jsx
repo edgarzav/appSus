@@ -6,8 +6,6 @@ export default class EmailDetails extends React.Component {
 
     componentDidMount() {
         this.loadEmail();
-
-
     }
 
     componentDidUpdate(prevProps) {
@@ -39,7 +37,6 @@ export default class EmailDetails extends React.Component {
     }
 
     render() {
-        console.log(this.state.email);
         if (this.state.email) {
             const { subject, body, sentAt, to, data, type } = this.state.email
             return <div className={`${this.props.isShowDetails ? `show-mobile-details` : 'hide-mobile-details'} email-details-container flex`}>

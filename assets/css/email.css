@@ -59,7 +59,7 @@ p {
   background-color: #0079d62a;
 }
 
-.note-preview img{
+.note-preview img {
   min-width: 130px;
   max-width: 230px;
 }
@@ -380,7 +380,6 @@ textarea {
   background-size: 15px;
   height: 17px;
   width: 17px;
-  /* color: #0078d6; */
 }
 
 .isReaden.preview-subject {
@@ -642,27 +641,17 @@ textarea {
   .preview-body {
     display: none;
   }
-  /* .reply-btn, .star-btn, .rubbish-bin-btn {
-    top: 80px;
-  } */
   .details-address {
     margin-top: 50px;
   }
-  /* .main-content{
-  flex-direction: column;
-}
-
-.email-details-container{
-  margin-top: 5px 0;
-} */
 }
 
 @media (max-width: 815px) {
   .hide-mobile-details {
-    max-width: 0;
+    display: none;
   }
   .show-mobile-details {
-    width: 100%;
+    display: flex;
   }
   .hide-list {
     display: none;
@@ -670,7 +659,8 @@ textarea {
   .side-bar {
     position: absolute;
     background-color: rgb(243, 243, 243);
-    height: 100vh;
+    height: 85vh;
+    z-index: 10;
   }
   .compose-email {
     width: 100%;
@@ -687,14 +677,10 @@ textarea {
   .preview-time {
     min-width: 105px;
   }
-  /* .details-back-btn {
-    visibility: visible;
-  } */
   .show-details-back {
     visibility: visible;
   }
-
-  ..display-toggle-btn{
-    top: 102px;
+  .display-toggle-btn {
+    top: 56px;
   }
 }

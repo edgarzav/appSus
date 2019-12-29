@@ -3,7 +3,6 @@ export default class Home extends React.Component {
     render() {
         return (
             <section className="home-container">
-            {/* <h1 className="home-title">Welcome</h1> */}
             <video src="./assets/videos/smoke.mp4" autoPlay muted></video>
             <h1 className="home-title">
                 <span>A</span>

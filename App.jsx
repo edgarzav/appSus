@@ -1,11 +1,9 @@
 import Home from './pages/Home.jsx'
 import EmailApp from './pages/EmailApp.jsx'
 import NoteApp from './pages/NoteApp.jsx'
-import BookApp from './pages/BookApp.jsx'
 import NavBar from './js/apps/cmps/NavBar.jsx'
 import Footer from './js/apps/cmps/Footer.jsx'
 import UserMsg from './js/apps/cmps/UserMsg.jsx'
-import BookPage from './js/apps/bookShop/pages/BookPage.jsx'
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
 const { createBrowserHistory } = History
@@ -38,8 +36,6 @@ class App extends React.Component {
                                 />
                             )
                         }} />
-                        <Route component={BookApp} path="/books" exact ></Route>
-                        <Route component={BookPage} path="/books/:id"></Route>
 
                     </Switch>
                 </Router>

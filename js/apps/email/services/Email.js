@@ -18,8 +18,3 @@ export default class Email {
 
     }
 }
-
-// sent: false,
-// inbox: true,
-// starred: false,
-// type: 'inbox'

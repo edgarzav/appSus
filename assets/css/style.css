@@ -169,4 +169,11 @@ video {
         margin: 0 auto;
         display: block;
     }
+    .home-container{
+       min-height: 674px;
+    }
+    .home-title{
+        top: 40%;
+        
+    }
 }

@@ -11,19 +11,28 @@ const { createBrowserHistory } = History
 const history = createBrowserHistory()
 
 class App extends React.Component {
+    state = { inputFilter: '' }
+    handleChange = (inputFilter) => {
+        this.setState({ inputFilter })
+    }
     render() {
         return (
             <main className="flex diraction-column">
                 <Router history={history}>
-                    <UserMsg/>
-                    <NavBar/>
+                    <UserMsg />
+                    <NavBar handleChange={this.handleChange} inputFilter={this.state.inputFilter} />
                     <Switch>
                         <Route component={Home} path="/" exact></Route>
                         <Route component={EmailApp} path="/email" ></Route>
-                        <Route component={NoteApp} path="/note" ></Route>
+                        {/* <Route component={NoteApp} path="/note" ></Route> */}
+                        <Route path="/note" render={(props) => {return (        
+                                    <NoteApp  {...props} 
+                                    inputFilter={this.state.inputFilter}
+                                    />
+                                )}} />
                     </Switch>
                 </Router>
-                <Footer/>
+                <Footer />
             </main>
         )
     }

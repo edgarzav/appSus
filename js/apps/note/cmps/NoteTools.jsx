@@ -9,7 +9,6 @@ export default class NoteTools extends React.Component {
         let noteData=this.props.note.info
         let key =Object.keys(noteData)[0]
         let noteDataStr=''
-        console.log(noteData[key])
         if(this.props.note.type==='NoteTodos'){
             noteDataStr=noteData[key].map(todo=>{
                 return `${todo.txt}`

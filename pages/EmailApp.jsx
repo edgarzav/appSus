@@ -25,9 +25,9 @@ export default class EmailApp extends React.Component {
     }
 
     componentDidMount() {
+        this.onSendNote()
         this.loadEmails();
         this.checkWindowWidth()
-        this.onSendNote()
     }
 
     onSendNote = () => {
@@ -35,7 +35,7 @@ export default class EmailApp extends React.Component {
         if (search) {
             this.onCompose()
         }
-        // console.log(this.props.location);
+         console.log(this.props);
         
        noteService.getNoteById(search.substring(1, search.length)).then(note=>{
     //   console.log(note);

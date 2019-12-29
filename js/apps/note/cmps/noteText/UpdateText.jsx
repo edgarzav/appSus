@@ -5,8 +5,6 @@ export default class UpdateText extends React.Component {
        
     }
     inputChange =  (ev) => {
-        // ev.preventDefault();
-        const field = ev.target.name
         const value = ev.target.value
         let txt={txt:value}
         this.props.handleChange(txt)

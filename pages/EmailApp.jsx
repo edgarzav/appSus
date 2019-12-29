@@ -24,10 +24,15 @@ export default class EmailApp extends React.Component {
     }
 
     componentDidMount() {
+        
         this.onSendNote()
         this.loadEmails();
         this.checkWindowWidth()
     }
+    componentDidUpdate(props) {
+        console.log(this.props.inputFilter)
+        
+      }
 
     componentDidUpdate(props) {
         if (props.inputFilter != this.props.inputFilter) {

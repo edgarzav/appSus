@@ -1,3 +1,4 @@
+
 export default class Filter extends React.Component {
 
     inputChange = (ev) => {
@@ -14,5 +15,6 @@ export default class Filter extends React.Component {
                 onChange={this.inputChange}></input>
         </div>
     }
+
 
 }

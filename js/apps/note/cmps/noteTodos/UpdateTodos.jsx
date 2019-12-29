@@ -11,7 +11,6 @@ export default class UpdateTodos extends React.Component {
     }
    
     inputChange = async (ev) => {
-        // ev.preventDefault();
         const index = ev.target.name
         const todos = this.props.note.info.todos
         const value = ev.target.value

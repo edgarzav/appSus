@@ -1,4 +1,4 @@
-import NoteTools from '../NoteTools.jsx'
+
 export default class NoteText extends React.Component {
 
     componentDidMount() {

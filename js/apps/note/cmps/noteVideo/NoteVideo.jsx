@@ -1,9 +1,5 @@
 
 export default class NoteVideo extends React.Component {
-
-    componentDidMount() {
-    }
-
     render() {
         return <div
         style={{ backgroundColor: this.props.note.style.backgroundColor }}

@@ -85,7 +85,6 @@ export default class NoteApp extends React.Component {
                                         onDelete={this.onDelete}
                                         onPinned={this.onPinned} />
                                 )
-
                             }} />
                     </Switch>
                 </Router>

@@ -1,14 +1,7 @@
 import utils from '../../../../services/utils.js'
 import axios from '../../../../lib/axios.js'
+import Note from './note.js'
 let gNotes = utils.loadFromStorage('notes', [])
-let x = {
-    id: 'sadsads',
-    type: "NoteMap",
-    isPinned: true,
-    info: {
-        txt: "Fullstack Me Baby!"
-    }
-}
 
 const getNotes = () => {
     return Promise.resolve([...gNotes]);
@@ -40,10 +33,6 @@ const createInfoByType = (noteType, txtInput) => {
 }
 
 const createNote = (txtInput, noteType) => {
-    let type = noteType
-    let id = utils.getRandomId()
-    let isPinned = false
-    let style = { backgroundColor: '#fffff' }
     if (noteType === 'NoteMap') {
         return    searchLocation(txtInput)
         .then(location=>{
@@ -52,20 +41,18 @@ const createNote = (txtInput, noteType) => {
                 lat:location.lat,
                 lng:location.lng
             }
-            let note = { id, type, info, isPinned, style }
-            gNotes.unshift(note)
+            let note =new Note(noteType,false,{ backgroundColor: '#fffff' },info)
+            gNotes = [note, ...gNotes]
             utils.saveToStorage('notes', [...gNotes])
         Promise.resolve([...gNotes])
         })
     } else {
         let info = createInfoByType(noteType, txtInput)
-        let note = { id, type, info, isPinned, style }
-        gNotes.unshift(note)
+        let note =new Note(noteType,false,{ backgroundColor: '#fffff' },info)
+        gNotes = [note, ...gNotes]
         utils.saveToStorage('notes', [...gNotes])
         return Promise.resolve([...gNotes])
     }
-
-    //gNotes = [note, ...gNotes]
 }
 
 const getNoteById = (noteId) => {

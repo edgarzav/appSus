@@ -26,15 +26,18 @@ export default class EmailApp extends React.Component {
     componentDidMount() {
         this.loadEmails();
         this.checkWindowWidth()
+        this.onSendNote()
+    }
+
+    onSendNote=()=>{
+        console.log(this.props.location.search)
     }
 
     checkWindowWidth = () => {
-        console.log(window.innerWidth);
         if (window.innerWidth < 750) {
             this.setState({ isMobile: true })
         }
         window.addEventListener('resize', () => {
-            console.log('resize', window.innerWidth < 750);
 
             this.setState({
                 isMobile: window.innerWidth < 750
@@ -52,8 +55,6 @@ export default class EmailApp extends React.Component {
     showFirstEmail = () => {
         let { id } = this.state.emails[0]
         id = String(id)
-        console.log(history);
-        console.log(id);
 
         history.push(`#/email/${id}/`);
     }
@@ -115,12 +116,9 @@ export default class EmailApp extends React.Component {
     }
 
     onToggleMobileDetails = () => {
-        console.log('isMobile? ', this.state.isMobile);
 
         this.setState({ isShowDetails: !this.state.isShowDetails })
-        console.log('app');
-
-        console.log(this.state.isShowDetails);
+       
     }
 
 

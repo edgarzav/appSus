@@ -45,6 +45,19 @@
     width: 100%;
 }
 
+ .innerNote-map{
+    position: relative;
+    z-index:-1;
+} 
+
+/* .innerNote-map>*{
+    width: 220px !important;
+    height: 240px !important;
+    z-index:-1;
+} */
+
+
+
 .note-container:hover .innerNote {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
 }

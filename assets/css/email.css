@@ -693,4 +693,8 @@ textarea {
   .show-details-back {
     visibility: visible;
   }
+
+  ..display-toggle-btn{
+    top: 102px;
+  }
 }

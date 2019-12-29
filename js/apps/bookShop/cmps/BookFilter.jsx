@@ -8,7 +8,7 @@ export default class BookFilter extends React.Component {
 
     render() {
         const { price, title ,fromPrice,toPrice} = this.props.filterBy
-        return <div className="filter-container flex justify-center align-center">
+        return <div className="book-filter-container flex justify-center align-center">
             <input type="text" className="book-input" placeholder="Book title" value={title}
                 onChange={this.changeInput} name="title"></input>
             <input type="range" className="price-range" onChange={this.changeInput} value={price} name="price" min="0" max="200"></input>

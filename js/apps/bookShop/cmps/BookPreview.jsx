@@ -2,6 +2,8 @@ import util from '../services/util.js'
 const { Link } = ReactRouterDOM
 export default class BookPreview extends React.Component {
     render() {
+        console.log('g');
+        
         const { title, listPrice, thumbnail, id } = this.props.book
         return <Link to={`/books/${id}`}>
             <div className="book-card flex display-column" onClick={this.onSelectBook}>

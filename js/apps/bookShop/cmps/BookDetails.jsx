@@ -6,6 +6,8 @@ import util from '../services/util.js'
 export default class BookDetails extends React.Component {
 
     onSelectBook = () => {
+        console.log('det');
+        
         const { onSelectBook, book } = this.props
         if (onSelectBook)
             onSelectBook(book);
@@ -42,7 +44,7 @@ export default class BookDetails extends React.Component {
         const { title, listPrice, thumbnail, subtitle, description, rating } = this.props.book
 
         const priceStyle = { color: this.getColor() }
-        return <div className="flex">
+        return <div className="details-container flex">
             <div className={`book-details flex display-column align-center ${this.getColor()}`} onClick={this.onSelectBook}>
                 <h2 className="details-title">{title}</h2>
                 <h4>Reading amount: {this.getPageCount()}</h4>
@@ -50,8 +52,8 @@ export default class BookDetails extends React.Component {
                 <h4>{subtitle}</h4>
                 <h4 style={priceStyle}>{listPrice.amount} {util.getCurrencyIcon(listPrice.currencyCode)}</h4>
                 <img className="details-img" src={thumbnail} />
-
-                {(listPrice.isOnSale) ? <img className="sale-img" src="./assets/img/sale.png" /> : ''}
+               
+                {(listPrice.isOnSale) ? <img className="sale-img" src="../assets/img/books/sale.png" /> : ''}
                 <span className="details-desc">Description: </span>
                 <LongTxt text={description} isLongTxtShown={this.checkDescLength()} />
                 <div className="details-btns flex">

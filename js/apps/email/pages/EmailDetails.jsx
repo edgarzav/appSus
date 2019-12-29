@@ -33,6 +33,7 @@ export default class EmailDetails extends React.Component {
 
     onStarEmail = () => {
         this.props.onStarEmail(this.state.email.id)
+        
     }
 
     render() {

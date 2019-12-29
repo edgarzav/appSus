@@ -4,6 +4,7 @@ import EmailSideBar from '../js/apps/email/cmps/EmailSideBar.jsx'
 import eventBusService from '../services/eventBusService.js'
 import EmailDetails from '../js/apps/email/pages/EmailDetails.jsx'
 import EmailCompose from '../js/apps/email/cmps/EmailCompose.jsx'
+import noteService from '../js/apps/note/services/noteService.js'
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
 const { createBrowserHistory } = History
@@ -29,8 +30,18 @@ export default class EmailApp extends React.Component {
         this.onSendNote()
     }
 
-    onSendNote=()=>{
-        console.log(this.props.location.search)
+    onSendNote = () => {
+        const { search } = this.props.location
+        if (search) {
+            this.onCompose()
+        }
+        // console.log(this.props.location);
+        
+       noteService.getNoteById(search.substring(1, search.length)).then(note=>{
+    //   console.log(note);
+          
+        //  eventBusService.emit('toggleModalMessage', note);
+       })
     }
 
     checkWindowWidth = () => {
@@ -68,7 +79,6 @@ export default class EmailApp extends React.Component {
     }
 
     onSetFilter = (newFilterField) => {
-
         this.setState(prevstate => ({ filterBy: { ...prevstate.filterBy, ...newFilterField } }), this.loadEmails);
     }
 
@@ -76,6 +86,8 @@ export default class EmailApp extends React.Component {
         emailService.deleteEmail(emailId).then(email => {
             this.loadEmails()
             this.props.history.push('/email')
+            eventBusService.emit('toggleModalMessage', 'Email was Deleted');
+
 
         })
     }
@@ -83,6 +95,9 @@ export default class EmailApp extends React.Component {
     onSendEmail = (email) => {
         emailService.addEmail(email).then(emails => {
             this.setState({ emails })
+            eventBusService.emit('toggleModalMessage', 'Email was sended');
+
+
         })
     }
 
@@ -92,7 +107,6 @@ export default class EmailApp extends React.Component {
     }
 
     toggleClass = () => {
-
         const currentState = this.state.displayBar;
         this.setState({ displayBar: !currentState });
     }
@@ -102,9 +116,10 @@ export default class EmailApp extends React.Component {
     }
 
     onStarEmail = (emailId) => {
-
         emailService.setEmailStar(emailId).then(emails => {
             this.setState({ emails })
+            eventBusService.emit('toggleModalMessage', 'Email was added to favorits');
+
         })
     }
 

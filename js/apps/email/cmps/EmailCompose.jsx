@@ -6,10 +6,9 @@ export default class EmailCompose extends React.Component {
     componentDidMount() {
         this.eventKiller = eventBusService.on('toggleModal', (email) => {
             this.setState(prevState => ({ display: !prevState.display, ...email }))
+            if(email.type === "NoteTodos")
+            console.log(email.info.todos);
         })
-console.log(this.props);
-
-        
     }
     
     
@@ -35,6 +34,7 @@ console.log(this.props);
 
     onCloseMsg = () => {
         if (this.state.to) {
+            eventBusService.emit('toggleModalMessage', 'Email was saved to drafts');
             this.setState(({ isDraft: true }), this.onSaveEmail)
         }
         this.closeCompose()
@@ -49,8 +49,6 @@ console.log(this.props);
 
     render() {
         const { to, cc, subject, body } = this.state
-        // className={`${!this.props.displayBar? 'hide' : ''} side-bar flex diraction-column align-center`}
-        // if (!this.state.display) return null;
         return <div className={`${!this.state.display ? 'hide-compose' : ''}
         ${this.state.minimize ? 'minimize-compose' : ''} compose-email`}>
             <h2 className="compose-title">Message</h2>

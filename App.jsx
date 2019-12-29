@@ -3,6 +3,7 @@ import EmailApp from './pages/EmailApp.jsx'
 import NoteApp from './pages/NoteApp.jsx'
 import NavBar from './js/apps/cmps/NavBar.jsx'
 import Footer from './js/apps/cmps/Footer.jsx'
+import UserMsg from './js/apps/cmps/UserMsg.jsx'
 // import EmailCompose from './js/apps/email/cmps/EmailCompose.jsx'
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
@@ -14,6 +15,7 @@ class App extends React.Component {
         return (
             <main className="flex diraction-column">
                 <Router history={history}>
+                    <UserMsg/>
                     <NavBar/>
                     <Switch>
                         <Route component={Home} path="/" exact></Route>

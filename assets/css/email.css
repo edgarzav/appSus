@@ -690,7 +690,11 @@ textarea {
   .preview-time {
     min-width: 105px;
   }
-  .details-back-btn {
+  /* .details-back-btn {
+    visibility: visible;
+  } */
+
+  .show-details-back{
     visibility: visible;
   }
 }

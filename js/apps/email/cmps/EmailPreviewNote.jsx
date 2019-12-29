@@ -11,12 +11,12 @@ export default function EmailPreviewNote(props) {
             return <div className="note-preview"><ul>Todo :{data.split(',').map((item, i) => <li key={i}>* {item}</li>)}</ul></div>
         case 'NoteVideo':
             return <div className="note-preview">
-                <iframe  
-                frameBorder="0" allowFullScreen
-                src={data}>
+                <iframe
+                    frameBorder="0" allowFullScreen
+                    src={data}>
                 </iframe>
             </div>
         default:
-            return 1
+            return ''
     }
 }

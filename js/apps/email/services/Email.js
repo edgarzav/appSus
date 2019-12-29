@@ -15,6 +15,5 @@ export default class Email {
         this.type = 'sent'
         this.data = data
         this.type = type
-
     }
 }

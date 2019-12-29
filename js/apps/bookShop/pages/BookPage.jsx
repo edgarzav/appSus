@@ -1,6 +1,6 @@
 import booksService from '../services/booksService.js'
 import BookDetails from '../cmps/BookDetails.jsx';
-import bookService from '../services/booksService.js'
+// import bookService from '../services/booksService.js'
 export default class BookPage extends React.Component {
 
     state = {
@@ -8,6 +8,8 @@ export default class BookPage extends React.Component {
     }
     componentDidMount() {
         this.loadBook();
+        console.log('page');
+        
     }
 
     componentDidUpdate(prevProps) {
@@ -56,6 +58,8 @@ export default class BookPage extends React.Component {
 
 
     render() {
+        console.log(this.state.book);
+        
         const { book } = this.state
         return (!book) ? <div className="loading">Loading...</div> :
             <BookDetails book={book} onDeleteRev={this.onDeleteRev}

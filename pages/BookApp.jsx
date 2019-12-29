@@ -1,6 +1,11 @@
 import bookService from '../js/apps/bookShop/services/booksService.js'
 import BooksList from '../js/apps/bookShop/cmps/BooksList.jsx'
 import BookFilter from '../js/apps/bookShop/cmps/BookFilter.jsx';
+import BookPage from '../js/apps/bookShop/pages/BookPage.jsx';
+const Router = ReactRouterDOM.HashRouter
+const { Route, Switch } = ReactRouterDOM
+const { createBrowserHistory } = History
+const history = createBrowserHistory()
 export default class BookApp extends React.Component {
 
     state = {
@@ -33,6 +38,15 @@ export default class BookApp extends React.Component {
                 <div>
                     <BookFilter filterBy={filterBy} onSetFilter={this.onSetFilter} />
                     <BooksList books={books}></BooksList>
+                    <Router history={history}>
+
+                    <Switch>
+                        {/* <Route component={BookApp} path="/books" exact ></Route> */}
+                        <Route component={BookPage} path="/books/:id" exact></Route>
+                        {/* <Route component={BookAdd} path="/bookAdd"  ></Route> */}
+                    </Switch>
+                </Router>
+
                 </div>
             </section>
         )

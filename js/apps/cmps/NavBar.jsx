@@ -15,7 +15,7 @@ export default class NavBar extends React.Component {
             <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/' exact>Home</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/email'>Email</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/note'>Note</NavLink></li>
-            <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/bookapp'>Book Shop</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to='/books'>Book Shop</NavLink></li>
         </ul>
         <Filter handleChange={this.props.handleChange} inputFilter={this.props.inputFilter} />
        <div onClick={this.openMenu}  className="hamburger-btn">

@@ -24,9 +24,9 @@ export default class EmailApp extends React.Component {
     }
 
     componentDidMount() {
+        this.onSendNote()
         this.loadEmails();
         this.checkWindowWidth()
-        this.onSendNote()
     }
 
     onSendNote = () => {
@@ -37,11 +37,7 @@ export default class EmailApp extends React.Component {
                 type: search.substring(search.lastIndexOf('=') + 1, search.lengthindexOf)
             }
             eventBusService.emit('toggleModal', note);
-            console.log('lll');
-            
         }
-
-
     }
 
     checkWindowWidth = () => {

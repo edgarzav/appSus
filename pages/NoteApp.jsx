@@ -2,6 +2,7 @@ import noteService from '../js/apps/note/services/noteService.js'
 import NoteList from '../js/apps/note/cmps/NoteList.jsx'
 import NoteAdd from '../js/apps/note/cmps/NoteAdd.jsx'
 import PageDetails from '../js/apps/note/pages/PageDetails.jsx'
+import eventBusService from '../services/eventBusService.js'
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
 const { createBrowserHistory } = History
@@ -9,15 +10,24 @@ const history = createBrowserHistory()
 export default class NoteApp extends React.Component {
     state = { notes: [], screenMode: false }
     componentDidMount() {
+        
         this.loadNotes();
     }
+    componentDidUpdate(props) {
+        console.log(props.inputFilter,this.props.inputFilter)
+    //this.loadNotes(this.props.inputFilter); 
+      }
 
-    loadNotes = () => {
-        noteService.getNotes().
+    loadNotes = (inputFilter) => {
+        noteService.getNotes(inputFilter).
             then(notes => this.setState({ notes }))
     }
     onHandleChange = (txtInput, noteType) => {
-        noteService.createNote(txtInput, noteType).then(notes => this.loadNotes())
+        noteService.createNote(txtInput, noteType).then(notes =>{
+            this.loadNotes()
+            eventBusService.emit('toggleModalMessage', 'Note has been added');
+        } )
+        
     }
     onToggleDoneTodo = (noteId, todoId) => {
         noteService.onToggleDoneTodo(noteId, todoId)
@@ -28,6 +38,7 @@ export default class NoteApp extends React.Component {
         noteService.deleteNote(noteId).then(notes => {
             this.setState({ notes })
             this.props.history.push('/note')
+            eventBusService.emit('toggleModalMessage', 'Note has been deleted');
         })
     }
     onPinned = (noteId) => {

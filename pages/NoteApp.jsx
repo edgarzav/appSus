@@ -10,12 +10,12 @@ const history = createBrowserHistory()
 export default class NoteApp extends React.Component {
     state = { notes: [], screenMode: false }
     componentDidMount() {
-        
         this.loadNotes();
     }
     componentDidUpdate(props) {
-        console.log(props.inputFilter,this.props.inputFilter)
-    //this.loadNotes(this.props.inputFilter); 
+        if(props.inputFilter !==this.props.inputFilter){
+            this.loadNotes(this.props.inputFilter); 
+        }
       }
 
     loadNotes = (inputFilter) => {

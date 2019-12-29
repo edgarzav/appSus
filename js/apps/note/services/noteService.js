@@ -2,11 +2,27 @@ import utils from '../../../../services/utils.js'
 import Note from './note.js'
 let gNotes = utils.loadFromStorage('notes', [])
 
-const getNotes = (inputFilter) => {
-    console.log(inputFilter)
+// const getNotes = (inputFilter) => {
+//     console.log(inputFilter)
+//     return Promise.resolve([...gNotes]);
+// }
+
+const getNotes=(filterBy)=>{
+    if (filterBy) return Promise.resolve(gNotes.filter(note=>{
+        if(note.type==='NoteText') return note.info.txt.includes(filterBy)
+        else if(note.type==='NoteMap') return note.info.address.includes(filterBy)
+        else if(note.type==='NoteTodos'){
+            for(let i=0;i<note.info.todos.length;i++){
+                if(note.info.todos[i].txt.includes(filterBy)) return true
+            }
+            return false
+        }
+        else{
+            return note.info.url.includes(filterBy)
+        } 
+    }))
     return Promise.resolve([...gNotes]);
 }
-
 
 const createInfoByType = (noteType, txtInput) => {
     let id = utils.getRandomId()
@@ -18,7 +34,6 @@ const createInfoByType = (noteType, txtInput) => {
     else if (noteType === 'NoteVideo') {
         let url = txtInput
         url = url.replace('watch?v=', 'embed/')
-        console.log(url)
         return { url }
     }
     else if (noteType === 'NoteMap') return { address: txtInput }

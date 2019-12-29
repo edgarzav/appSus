@@ -1,14 +1,20 @@
-export default function Filter(props){
+export default class Filter extends React.Component{
 
-    function inputChange(ev){
+    componentDidMount(){
+        console.log(window.location.href )
+    }
+     inputChange=(ev)=>{
         const value = ev.target.value;
-        props.handleChange(value)
+        this.props.handleChange(value)
     }
 
-    return <div className="filter">
-        <input type="text" value={props.inputFilter}
+    render(){
+        return <div className="filter">
+        <input type="text" value={this.props.inputFilter}
          name="name"
          placeholder='please enter input to search'
-          onChange={inputChange}></input>
+          onChange={this.inputChange}></input>
     </div>
+    }
+    
 }

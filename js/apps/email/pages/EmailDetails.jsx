@@ -1,11 +1,13 @@
 import emailService from '../services/emailService.js'
-
+import EmailPreviewNote from '../cmps/EmailPreviewNote.jsx'
 export default class EmailDetails extends React.Component {
     state = { email: null }
 
 
     componentDidMount() {
         this.loadEmail();
+
+
     }
 
     componentDidUpdate(prevProps) {
@@ -33,12 +35,13 @@ export default class EmailDetails extends React.Component {
 
     onStarEmail = () => {
         this.props.onStarEmail(this.state.email.id)
-        
+
     }
 
     render() {
+        console.log(this.state.email);
         if (this.state.email) {
-            const { subject, body, sentAt, to } = this.state.email
+            const { subject, body, sentAt, to, data, type } = this.state.email
             return <div className={`${this.props.isShowDetails ? `show-mobile-details` : 'hide-mobile-details'} email-details-container flex`}>
                 <div className="email-details">
                     <div className="details-title-container">
@@ -54,7 +57,10 @@ export default class EmailDetails extends React.Component {
                             <p className="details-address">{` <${to}>`}</p>
                         </div>
                         <p className="details-time">{new Date(sentAt).toLocaleDateString()} {new Date(sentAt).toLocaleTimeString()}</p>
+                        <EmailPreviewNote note={{ type: type, data: data }} />
                         <p className="details-body">{body}</p>
+
+
                     </div>
                 </div>
             </div>

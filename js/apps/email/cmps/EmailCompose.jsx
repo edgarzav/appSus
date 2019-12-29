@@ -33,8 +33,8 @@ export default class EmailCompose extends React.Component {
 
 
     onSaveEmail = () => {
-        const { to, cc, subject, body, isDraft } = this.state
-        this.props.onSendEmail({ to, cc, subject, body, isDraft })
+        const { to, cc, subject, body, isDraft,data,type } = this.state
+        this.props.onSendEmail({ to, cc, subject, body, isDraft,data,type })
         this.setState({ to: '', cc: '', subject: '', body: '' })
         this.closeCompose()
     }
@@ -67,9 +67,9 @@ export default class EmailCompose extends React.Component {
                 <input type="text" value={to} placeholder="to" name="to" onChange={this.inputChange} />
                 <input type="text" value={cc} placeholder="cc" name="cc" onChange={this.inputChange} />
                 <input type="text" value={subject} placeholder="subject" name="subject" onChange={this.inputChange} />
-                {type ? <EmailPreviewNote note={{ type: type, data: data }} /> :
-                    <textarea name="" value={body} id="" cols="30" rows="10" name="body" onChange={this.inputChange}></textarea>
-                }
+                <textarea name="" value={body} id="" cols="30" rows="10" name="body" onChange={this.inputChange}></textarea>
+               <EmailPreviewNote note={{ type: type, data: data }} /> :
+                
             </form>
             <button className="compose-btn" onClick={this.onSaveEmail}>Send</button>
         </div>

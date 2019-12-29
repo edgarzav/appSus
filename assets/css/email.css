@@ -59,8 +59,9 @@ p {
   background-color: #0079d62a;
 }
 
-.note-preview{
-  min-height: 230px;
+.note-preview img{
+  min-width: 130px;
+  max-width: 230px;
 }
 
 .display-toggle-btn {
@@ -296,14 +297,6 @@ textarea {
   transform: translate(-165px, 0);
   max-width: 0;
 }
-
-/* .fade-in {
-	opacity: 1;
-	animation-name: fadeInOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: 2s;
-} */
 
 .compose-item {
   width: 118px;
@@ -697,8 +690,7 @@ textarea {
   /* .details-back-btn {
     visibility: visible;
   } */
-
-  .show-details-back{
+  .show-details-back {
     visibility: visible;
   }
 }

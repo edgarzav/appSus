@@ -8,11 +8,13 @@ export default class EmailSideBar extends React.Component {
         return <div className={`${!this.props.displayBar ?
             'hide-side-bar' : ''} side-bar flex diraction-column align-center`}>
 
-            <EmailFilter filterBy={this.props.filterBy} onSetFilter={this.props.onSetFilter} />
+            <EmailFilter filterBy={this.props.filterBy}
+                onSetFilter={this.props.onSetFilter} />
+
             <EmailCompose onSendEmail={this.props.onSendEmail} />
-            <EmailSideNav onSetFilter={this.props.onSetFilter} onCompose={this.props.onCompose} />
 
+            <EmailSideNav onSetFilter={this.props.onSetFilter}
+                onCompose={this.props.onCompose} />
         </div>
-
     }
 }

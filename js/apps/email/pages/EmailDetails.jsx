@@ -39,7 +39,9 @@ export default class EmailDetails extends React.Component {
     render() {
         if (this.state.email) {
             const { subject, body, sentAt, to, data, type } = this.state.email
-            return <div className={`${this.props.isShowDetails ? `show-mobile-details` : 'hide-mobile-details'} email-details-container flex`}>
+            return <div className={`${this.props.isShowDetails ?
+                `show-mobile-details` : 'hide-mobile-details'} email-details-container flex`}>
+
                 <div className="email-details">
                     <div className="details-title-container">
                         <h2 className="details-title">{subject}</h2>
@@ -53,11 +55,11 @@ export default class EmailDetails extends React.Component {
                             <h2 className="details-name">{to.substring(0, to.indexOf('@'))} </h2>
                             <p className="details-address">{` <${to}>`}</p>
                         </div>
-                        <p className="details-time">{new Date(sentAt).toLocaleDateString()} {new Date(sentAt).toLocaleTimeString()}</p>
+                        <p className="details-time">{new Date(sentAt).toLocaleDateString()}
+                            {new Date(sentAt).toLocaleTimeString()}</p>
+
                         <EmailPreviewNote note={{ type: type, data: data }} />
                         <p className="details-body">{body}</p>
-
-
                     </div>
                 </div>
             </div>

@@ -95,8 +95,6 @@ export default class EmailApp extends React.Component {
             this.loadEmails()
             this.props.history.push('/email')
             eventBusService.emit('toggleModalMessage', 'Email was Deleted');
-
-
         })
     }
 
@@ -145,8 +143,14 @@ export default class EmailApp extends React.Component {
 
         return <div className="email-app flex container">
             <button onClick={this.toggleClass} className="display-toggle-btn">☰</button>
-            <button onClick={this.onBackToList} className={`${this.state.isShowDetails ? 'show-details-back' : ''} details-back-btn`}>back</button>
-            <EmailSideBar onSetEmailType={this.onSetEmailType} displayBar={this.state.displayBar} toggleClass={this.toggleClass}
+
+            <button onClick={this.onBackToList}
+                className={`${this.state.isShowDetails ?
+                    'show-details-back' : ''} details-back-btn`}>back</button>
+
+            <EmailSideBar onSetEmailType={this.onSetEmailType}
+                displayBar={this.state.displayBar} toggleClass={this.toggleClass}
+
                 onSendEmail={this.onSendEmail} onSetFilter={this.onSetFilter}
                 filterBy={this.state.filterBy} onCompose={this.onCompose} />
             <div className="main-content flex">
@@ -160,7 +164,9 @@ export default class EmailApp extends React.Component {
                 <Router history={history}>
                     <Switch>
                         <Route render={(props) => <EmailDetails {...props}
-                            onDeleteEmail={this.onDeleteEmail} isShowDetails={this.state.isShowDetails} onStarEmail={this.onStarEmail} onReplayEmail={this.onReplayEmail} />}
+                            onDeleteEmail={this.onDeleteEmail}
+                            isShowDetails={this.state.isShowDetails}
+                            onStarEmail={this.onStarEmail} onReplayEmail={this.onReplayEmail} />}
                             path="/email/:id" exact></Route>
                         <Route component={EmailCompose} exact path="/email/compose" ></Route>
                     </Switch>

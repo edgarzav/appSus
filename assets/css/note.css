@@ -44,7 +44,6 @@
     width: 100%;
 }
 
-
 .note-container:hover .innerNote {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
 }
@@ -316,15 +315,11 @@
     .screen {
         display: none;
     }
-
     .noteAdd-container {
         max-width: 400px;
     }
     .noteAdd-container input[type="text"] {
         width: 72px;
-        font-size:1rem;
+        font-size: 1rem;
     }
-    
-    
 }
-

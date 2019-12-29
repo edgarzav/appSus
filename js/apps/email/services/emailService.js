@@ -9,7 +9,7 @@ export default {
     deleteEmail,
     setEmailStar,
 }
-let gEmails = utils.loadFromStorage('emails',createEmails()) 
+let gEmails = utils.loadFromStorage('emails', createEmails())
 
 
 function getEmails(filterBy, sortBy) {
@@ -45,7 +45,7 @@ function addEmail(email) {
     const { to, cc, subject, body, isDraft, data, type } = email
     const newEmail = new Email(to, cc, subject, body, isDraft, data, type)
     gEmails = [{ ...newEmail }, ...gEmails]
-    utils.saveToStorage('emails',gEmails)
+    utils.saveToStorage('emails', gEmails)
     return Promise.resolve(gEmails)
 }
 

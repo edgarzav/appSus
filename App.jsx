@@ -19,7 +19,8 @@ class App extends React.Component {
             <main className="flex diraction-column">
                 <Router history={history}>
                     <UserMsg />
-                    <NavBar handleChange={this.handleChange} inputFilter={this.state.inputFilter} />
+                    <NavBar handleChange={this.handleChange}
+                        inputFilter={this.state.inputFilter} />
                     <Switch>
                         <Route component={Home} path="/" exact></Route>
                         <Route path="/email" render={(props) => {
@@ -36,7 +37,6 @@ class App extends React.Component {
                                 />
                             )
                         }} />
-
                     </Switch>
                 </Router>
                 <Footer />
@@ -44,8 +44,6 @@ class App extends React.Component {
         )
     }
 }
-
-
 
 ReactDOM.render(
     <App />,

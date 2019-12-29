@@ -38,7 +38,5 @@ export default class EmailSideNav extends React.Component {
                 data-id={4} onClick={this.onSetEmailType} data-value="isDraft">
                 <span className="drafts-icon"></span>drafts</li>
         </ul>
-
     }
-
 }

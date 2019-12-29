@@ -23,16 +23,6 @@ class App extends React.Component {
                     <NavBar handleChange={this.handleChange} inputFilter={this.state.inputFilter} />
                     <Switch>
                         <Route component={Home} path="/" exact></Route>
-<<<<<<< HEAD
-                        <Route path="/email" render={(props) => {return (        
-                                    <EmailApp  {...props} 
-                                    inputFilter={this.state.inputFilter}
-                                    />
-                                )}} />
-
-                        <Route path="/note" render={(props) => {return (        
-                                    <NoteApp  {...props} 
-=======
                         <Route path="/email" render={(props) => {
                             return (
                                 <EmailApp  {...props}
@@ -43,7 +33,6 @@ class App extends React.Component {
                         <Route path="/note" render={(props) => {
                             return (
                                 <NoteApp  {...props}
->>>>>>> 867a0822ddce359eed4687f12c579d526f6bba56
                                     inputFilter={this.state.inputFilter}
                                 />
                             )

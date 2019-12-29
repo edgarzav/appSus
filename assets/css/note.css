@@ -320,6 +320,11 @@
     .noteAdd-container {
         max-width: 400px;
     }
+    .noteAdd-container input[type="text"] {
+        width: 72px;
+        font-size:1rem;
+    }
+    
     
 }
 

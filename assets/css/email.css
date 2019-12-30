@@ -111,6 +111,7 @@ p {
 
 .details-time {
   color: grey;
+  margin-right: 10px;
 }
 
 .details-name {

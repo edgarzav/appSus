@@ -55,8 +55,11 @@ export default class EmailDetails extends React.Component {
                             <h2 className="details-name">{to.substring(0, to.indexOf('@'))} </h2>
                             <p className="details-address">{` <${to}>`}</p>
                         </div>
-                        <p className="details-time">{new Date(sentAt).toLocaleDateString()}
-                            {new Date(sentAt).toLocaleTimeString()}</p>
+                        <div className="flex">
+                            <p className="details-time">{new Date(sentAt).toLocaleDateString()} </p>
+                            <p className="details-time">{new Date(sentAt).toLocaleTimeString()}</p>
+                        </div>
+
 
                         <EmailPreviewNote note={{ type: type, data: data }} />
                         <p className="details-body">{body}</p>
